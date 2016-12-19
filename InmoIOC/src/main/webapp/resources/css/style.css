@@ -1,0 +1,54 @@
+table {
+	font-family: "Helvetica Neue", Helvetica, sans-serif;
+   	width: 50%;
+}
+
+th {
+	background: Blue;
+  	color: white;
+}
+
+.message {
+	background: Red !important;  	
+}
+
+td,th{
+	border: 1px solid gray;
+    width: 25%;
+    text-align: left;
+    padding: 5px 10px;
+}
+
+.linkbutton {    
+	font-family: verdana, arial, sans-serif; 
+   	font-size: 10pt; 
+   	font-weight: bold; 
+   	padding: 4px; 
+   	background-color: #25A6E1; 
+   	color: #FFFFFF; 
+   	text-decoration: none; 
+}
+ 
+.linkbutton:link, 
+.linkbutton:visited { 
+   	border-top: 1px solid #cccccc; 
+   	border-bottom: 2px solid #666666; 
+   	border-left: 1px solid #cccccc; 
+   	border-right: 2px solid #666666; 
+}
+ 
+.linkbutton:hover { 
+   	border-bottom: 1px solid #cccccc; 
+   	border-top: 2px solid #666666; 
+   	border-right: 1px solid #cccccc; 
+   	border-left: 2px solid #666666; 
+}
+
+.dreta{
+	text-align: right;
+}
+
+.esquerra{
+	text-align: left;
+}
+
