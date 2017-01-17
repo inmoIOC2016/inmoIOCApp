@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.inmoioc.model.Property;
+import com.inmoioc.model.Selling;
+
 /**
  * Controlador que carrega el model de dades e invoca a la vista utilitzat al menu per els usuaris amb ROL user 
  * @author: Sonia Carrillo Mañas
@@ -17,7 +20,8 @@ public class RentalController {
 	
 	@RequestMapping(value = "/rental", method = RequestMethod.GET, headers = "Accept=application/json")
 	public String rental(Model model) {		
-		//model.addAttribute("rental", new Rental());
+		//model.addAttribute("rental", new Rental());	
+		model.addAttribute("selling", new Selling());	
 		return "rental/rental";
 	}
 }

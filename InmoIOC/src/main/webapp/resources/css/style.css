@@ -4,19 +4,51 @@ table {
 }
 
 th {
-	background: Blue;
-  	color: white;
+  	color: lightseagreen;
 }
 
-.message {
-	background: Red !important;  	
+.messageKO {
+    border: 2px solid Red;
+    padding: 10px 40px; 
+    background: White !important;
+    width: 50%;
+    min-height: 30px;
+    border-radius: 25px;
+    color: Red;
+}
+
+.messageOK {
+    border: 2px solid Green;
+    padding: 10px 40px; 
+    background: White !important;
+    width: 50%;
+    min-height: 30px;
+    border-radius: 25px;
+    color: Green;
+}
+
+.messageInfo {
+    border: 2px solid Yellow;
+    padding: 10px 40px; 
+    background: Yellow !important;
+    width: 350px;
+    border-radius: 10px;
+    color: Black;
 }
 
 td,th{
-	border: 1px solid gray;
-    width: 25%;
-    text-align: left;
     padding: 5px 10px;
+    border: 1px solid gray;
+      /*width: 25%;
+    text-align: left;*/	
+}
+
+#noborder td{
+    border: 0px solid !important;
+}
+
+#noborder th{
+    border: 0px solid !important;
 }
 
 .linkbutton {    
@@ -50,5 +82,88 @@ td,th{
 
 .esquerra{
 	text-align: left;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 5px 5px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.buttonBlack {
+    background-color: white;
+    color: black;
+    border: 2px solid #555555;
+}
+
+.buttonBlack:hover {
+    background-color: #555555;
+    color: white;
+}
+
+.buttonTableCell{
+	display: table-cell;
+	padding: 10px 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: lightseagreen;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111111;
+}
+
+.liSelected {
+	background-color: grey;
+}
+
+span {
+	font-size:15px;
+	font-weight: bold;
+	color: gray;
+}
+
+.spanTitle {
+	font-size:60px !important;	
+}
+
+.clear {
+	height: 50px;
+}
+
+.info {
+	position: absolute; 
+	left: 30px; 
+	top: 10px;
+	font-family: verdana, arial, sans-serif; 
+   	font-size: 30pt; 
+   	font-weight: bold;    	
+   	color: #FFFFFF;    	
 }
 

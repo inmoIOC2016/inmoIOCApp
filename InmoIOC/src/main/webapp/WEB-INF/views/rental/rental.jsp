@@ -4,12 +4,27 @@
 <html>
 	<head>
 		<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+		<script>
+			function loadUserData() {
+				var userNameItem = document.getElementById('userNameItem');
+				var userName = sessionStorage.getItem("userName");
+				if(userName == null){
+					window.location.href = 'http://localhost:8080/InmoIOC/login';
+				} else {
+					userNameItem.innerHTML += '<span style="color:white;">'+userName+'</span>';
+				}
+			}
+			
+			function disconnect() {
+				sessionStorage.clear()
+				return true;
+			}						
+		</script>
 	</head>
-	<body>
-		<%@include file="../dataUser.jsp" %>
-		<hr>
-		<%@include file="../menuUser.jsp" %>
+	<body onload="loadUserData();">
+		<%@include file="../menuUser.jsp" %>			
 		<hr>
 		<h2>Consultar/Solicitar Lloguer</h2>
+		<%@include file="../footerapp.jsp" %>
 	</body>
 </html>

@@ -40,12 +40,15 @@ public class Property{
 	String contact;	
 	
 	@Column(name="available")
-	int available;	
+	int available;
+	
+	@Column(name="username")
+	String username;
 	
 	public Property() {
 		super();
 	}
-	public Property(int id_property, String name, String address, int id_category, int sell_type, float base_price, String contact, int available) {
+	public Property(int id_property, String name, String address, int id_category, int sell_type, float base_price, String contact, int available, String username) {
 		super();
 		this.id_property = id_property;
 		this.name = name;
@@ -54,7 +57,8 @@ public class Property{
 		this.sell_type = sell_type;
 		this.base_price = base_price;
 		this.contact = contact;
-		this.available = available;		
+		this.available = available;
+		this.username = username;
 	}
 	public int getId_property() {
 		return id_property;
@@ -104,4 +108,10 @@ public class Property{
 	public void setAvailable(int available) {
 		this.available = available;
 	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}	
 }

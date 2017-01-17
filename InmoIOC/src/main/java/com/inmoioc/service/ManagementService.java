@@ -34,8 +34,18 @@ public class ManagementService {
 	}
 
 	@Transactional
-	public Category getCategory(int id) {
-		return managementDAO.getCategory(id);
+	public Category getCategoryById(int id) {
+		return managementDAO.getCategoryById(id);
+	}
+	
+	@Transactional
+	public List<Category> getCategoryByName(String name) {
+		return managementDAO.getCategoryByName(name);
+	}
+	
+	@Transactional
+	public List<Category> getCategory(int id, String name) {
+		return managementDAO.getCategory(id, name);
 	}
 
 	@Transactional
@@ -112,11 +122,21 @@ public class ManagementService {
 	@Transactional
 	public List<Property> getAllProperty() {
 		return managementDAO.getAllProperty();
-	}
-
+	}	
+	
 	@Transactional
-	public Property getProperty(int id) {
-		return managementDAO.getProperty(id);
+	public Property getPropertyById(int id) {
+		return managementDAO.getPropertyById(id);
+	}
+	
+	@Transactional
+	public List<Property> getPropertyByName(String name) {
+		return managementDAO.getPropertyByName(name);
+	}
+	
+	@Transactional
+	public List<Property> getProperty(int id, String name) {
+		return managementDAO.getProperty(id, name);
 	}
 
 	@Transactional
@@ -143,8 +163,18 @@ public class ManagementService {
 	}
 
 	@Transactional
-	public Selling getSelling(int id) {
-		return managementDAO.getSelling(id);
+	public Selling getSellingById(int id) {
+		return managementDAO.getSellingById(id);
+	}
+	
+	@Transactional
+	public List<Selling> getSellingByName(String name) {
+		return managementDAO.getSellingByName(name);
+	}
+	
+	@Transactional
+	public List<Selling> getSelling(int id, int idProperty) {
+		return managementDAO.getSelling(id, idProperty);
 	}
 
 	@Transactional
@@ -197,13 +227,28 @@ public class ManagementService {
 	}
 
 	@Transactional
-	public User getUser(int id) {
-		return managementDAO.getUser(id);
+	public User getUserById(int id) {
+		return managementDAO.getUserById(id);
+	}
+	
+	@Transactional
+	public List<User> getUserByName(String name) {
+		return managementDAO.getUserByName(name);
+	}
+	
+	@Transactional
+	public List<User> getUser(int id, String name) {
+		return managementDAO.getUser(id, name);
 	}
 
 	@Transactional
 	public void addUser(User user) {
 		managementDAO.addUser(user);
+	}
+	
+	@Transactional
+	public List<User> getUserByUserNameAndEmail(String userName, String email) {
+		return managementDAO.getUserByUserNameAndEmail(userName, email);
 	}
 
 	@Transactional

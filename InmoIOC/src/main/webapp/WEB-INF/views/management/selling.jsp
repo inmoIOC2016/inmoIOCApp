@@ -6,28 +6,70 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 		<link href="<c:url value="/resources/css/style.css" />" rel="stylesheet">
+		<script>
+			function loadUserData() {
+				var userNameItem = document.getElementById('userNameItem');
+				var userName = sessionStorage.getItem("userName");
+				if(userName == null){
+					window.location.href = 'http://localhost:8080/InmoIOC/login';
+				} else {
+					userNameItem.innerHTML += '<span style="color:white;">'+userName+'</span>';
+				}
+			}
+			
+			function disconnect() {
+				sessionStorage.clear()
+				return true;
+			}
+			
+			function confirmDelete() {			    
+				var confirmar = confirm("Segur que vols eliminar aquest registre?");
+				if (confirmar == true) {			    	
+					return true;
+				} else {
+					return false;
+				}			    
+			}
+			
+			function filterAll(){
+				window.location.href = '/InmoIOC/vendes';
+			}
+			
+			function filter(){
+				var fid = document.getElementById("fid").value;
+				var fname = document.getElementById("fname").value;				
+				if(fid == '' && fname == ''){
+					filterAll();
+				} else {
+					if(fid != '' && fname != ''){						
+						window.location.href = '/InmoIOC/findProperty/' + fid + '/' + fname;
+					} else {
+						if(fid != ''){
+							window.location.href = '/InmoIOC/findPropertyById/' + fid;
+						} 						
+						if(fname != ''){
+							window.location.href = '/InmoIOC/findPropertyByName/' + fname;
+						}						
+					}
+				}
+			}
+		</script>
 	</head>	
-	<body>
-		<%@include file="../dataUser.jsp" %>
-		<hr>
-		<%@include file="../menuAdmin.jsp" %>
-		<hr>
-		<h2>VENDES</h2>
-		
+	<body onload="loadUserData();">
+		<%@include file="../menuAdminSelling.jsp" %>
+				
 		<c:if test="${!empty message}">
-			<table>
-				<tr><th class="message">${message}</th></tr>
-			</table>
+			<div class="messageKO">${message}</div>
 		</c:if>
 		<br>		
 		<form:form method="post" modelAttribute="selling" action="/InmoIOC/addSelling">
-			<table>
+			<table id="noborder">
 				<tr>
-					<th colspan="2">Venda</th>
+					<th colspan="2">Gestió de Vendes/Compres/Lloguers/Traspassos</th>
 				</tr>				
 		        <tr>
 		        	<form:hidden path="id_selling" />
-					<td><form:label path="id_user">User:</form:label></td>
+					<td><form:label path="id_user">Usuari:</form:label></td>
 		          	<td>
 			          	<form:select name="id_user" path="id_user">
 						  <c:forEach items="${userList}" var="ulist">
@@ -79,26 +121,46 @@
 				</tr>				
 				<tr>
 					<td colspan="2">
-						<input type="submit" value="Desar" />
-						<input type="reset" value="Buidar">
+						<input type="submit" value="Desar" class="button buttonBlack" />
+						<input type="reset" value="Buidar" class="button buttonBlack" />
 					</td>
 				</tr>
 			</table> 
 		</form:form>
-		<br>
+		<hr>
 		<h3>Llistat Vendes</h3>
+		<table id="noborder">
+			<tr>
+				<th colspan="4">Cercador</th>
+			</tr>
+			<tr>	
+				 <td>Id:</td>
+		         <td><input type="text" name="fid" id="fid"/></td>				
+		         <td>Inmoble:</td>
+		         <td><input type="text" name="fname" id="fname"/></td>
+		    </tr>				
+			<tr>
+				<td colspan="4">
+					<a class="button buttonBlack" href="#" onclick="filterAll();">Mostrar Tots</a>
+					<a class="button buttonBlack" href="#" onclick="filter();">Filtrar</a>
+				</td>
+			</tr>
+		</table>		
+		<c:if test="${!empty filter}">
+			<div class="messageInfo">${filter}</div>
+		</c:if>
+		<br>
 		<c:if test="${!empty sellingList}">
 			<table class="tg">
 			<tr>
 				<th width="50">Id</th>
-				<th width="100">Id user</th>
-				<th width="100">Id property</th>
-				<th width="50">price</th>
-				<th width="50">sell_type</th>
-				<th width="100">date_start</th>
-				<th width="100">date_end</th>		
-				<th width="50">Modificar</th>
-				<th width="50">Eliminar</th>
+				<th width="100">Usuari</th>
+				<th width="100">Inmoble</th>
+				<th width="50">Preu</th>
+				<th width="50">Tipus Venda</th>
+				<th width="100">Data Inici</th>
+				<th width="100">Data Fi</th>		
+				<th width="100">Accions</th>
 			</tr>
 			<c:forEach items="${sellingList}" var="selling">
 				<tr>
@@ -108,12 +170,16 @@
 					<td>${selling.expected_price}</td>
 					<td>${selling.sell_type}</td>
 					<td>${selling.date_start}</td>
-					<td>${selling.date_end}</td>						
-					<td><a href="<c:url value='/updateSelling/${selling.id_selling}' />" >Modificar</a></td>
-					<td><a href="<c:url value='/deleteSelling/${selling.id_selling}' />" >Eliminar</a></td>
+					<td>${selling.date_end}</td>
+					<td>
+						<a class="button buttonBlack buttonTableCell" href="<c:url value='/updateSelling/${selling.id_selling}' />" >Modificar</a>
+						<a class="button buttonBlack buttonTableCell" onclick="return confirmDelete();" href="<c:url value='/deleteSelling/${selling.id_selling}' />" >Eliminar</a>
+					</td>
 				</tr>
 			</c:forEach>
 			</table>
 		</c:if>
+		
+		<%@include file="../footerapp.jsp" %>
 	</body>
 </html>
