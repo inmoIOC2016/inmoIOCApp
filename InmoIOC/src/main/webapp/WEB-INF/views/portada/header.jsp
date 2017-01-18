@@ -1,8 +1,12 @@
-<div style="display: inline-block;">
-<img src="<c:url value="/resources/img/logoalternativo.png" />" />
-<img src="<c:url value="/resources/img/contact.png" />"/></div>
 <%@include file="dataClientPortada.jsp" %>
-	<div style="background-color:#C4C4C4">	
-	<a class="linkbutton" href="<c:url value='compra' />" >Compra</a>
-	<a class="linkbutton" href="<c:url value='lloguer' />" >Lloguer</a>
+<div style="width:100%;">
+<img src="<c:url value="/resources/img/logoalternativo.png" />" />
+<img style="float:right; padding-top:14px;"src="<c:url value="/resources/img/contact.png" />"/>
+</div>
+	<div id="menu_superior">	
+	<ul>
+	<li><a href="<c:url value='compra' />" >Compra</a></li>
+	<li><a href="<c:url value='lloguer' />" >Lloguer</a></li>
+	<li><a href="<c:url value='contacte' />" >Contacte</a></li>
+	</ul>
 	</div>

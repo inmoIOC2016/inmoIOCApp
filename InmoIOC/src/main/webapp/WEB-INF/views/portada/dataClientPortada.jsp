@@ -1,4 +1,4 @@
-<div class="dreta" style="display: block; ">
+<div id="login_window">
 <%
 HttpSession objSession = request.getSession(true); 
 if (objSession.getAttribute("rights") != null)
@@ -19,7 +19,7 @@ if (objSession.getAttribute("rights") != null)
 }
 else
 {
-	%><span>No estas connectat</span><br>
+	%><span>No estàs connectat</span><br>
 	<a href="<c:url value='/login' />" >Connecta</a>&nbsp;&nbsp;<a href="<c:url value='/registration' />" >Registra</a>
 	<%
 }
