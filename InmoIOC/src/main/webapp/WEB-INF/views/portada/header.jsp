@@ -1,5 +1,5 @@
 <div style="display: inline-block;">
-<img src="<c:url value="/resources/img/inmoioc.png" />" />
+<img src="<c:url value="/resources/img/logoalternativo.png" />" />
 <img src="<c:url value="/resources/img/contact.png" />"/></div>
 <%@include file="dataClientPortada.jsp" %>
 	<div style="background-color:#C4C4C4">	

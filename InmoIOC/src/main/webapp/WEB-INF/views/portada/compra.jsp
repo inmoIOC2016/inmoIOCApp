@@ -6,7 +6,7 @@
 	<head>
 			<link href="<c:url value="/resources/css/mainpage.css" />" rel="stylesheet">
 	</head>
-	<body  style="background: url(<c:url value="/resources/img/yellowbackground.png" />);  background-size: cover;">
+	<body  style="background: #222 url(<c:url value="/resources/img/fondoalternativo.jpg" />) top center no-repeat fixed; ">
 	<div id="page">
 	
 		<%@include file="header.jsp" %>
