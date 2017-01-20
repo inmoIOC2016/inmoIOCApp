@@ -5,7 +5,7 @@ if (objSession.getAttribute("rights") != null)
 {
 	  //si estas conectat mostra un link
 	 %>
-	 	<span>Connectat com: <%= objSession.getAttribute( "userName" ) %> </span>&nbsp; 
+	 	<span>Connectat com: <%= objSession.getAttribute( "userName" ) %> </span><br>
 	    <a href="<c:url value='/logout' />" >Desconecta</a>
 	 <%
 	 // si es admin mostra link al panell d'administració

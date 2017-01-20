@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@page pageEncoding="UTF-8"%>
 
 <html>
 	<head>
@@ -30,12 +31,16 @@
 		<h3 style="margin-left: 40px;">Compra</h3>
 		<div id="product_count">Hi ha X productes</div>
 		<ul style="list-style-type: none;">
+		
+		<c:if test="${!empty propertyList}">
+		<c:forEach items="${propertyList}" var="property">
 		<li class="product_line">
+		<div style="position: relative;">
 			<div class="product_line_left">
-				<div style="float:left;"><a href="http://www.finquesoscar.com/ca/obra-nova/3147-Piso-73752.html" class="product_img_link" title="Pis de nova construcciÃ³ en venda ">
-					<img class="product_line_image" width="170" height="128" src="http://www.finquesoscar.com/18040-home_default/Piso-73752.jpg" alt="">	
+				<div style="float:left;"><a href="" class="product_img_link">
+					<img class="product_line_image" width="170" height="128" src="" alt="">	
 				</a></div>
-				<div style="float:right;"><h3><a href="http://www.finquesoscar.com/ca/obra-nova/3147-Piso-73752.html">Nom del pis</a></h3>		
+				<div style="float:right;"><h3><a href="">Nom del pis</a></h3>		
     	<p class="product_line_desc">
     	<strong>CIUTAT</strong></p></div>
 			</div>
@@ -45,11 +50,11 @@
 				</div>
 				<a class="product_button" href="http://www.www.www">Veure detalls</a>		
 			</div>
+			</div>
 		</li>
-		<li class="product_line"><h3>casa 2</h3> Preu, imatge etc...</li>
-		<li class="product_line"><h3>casa 3</h3> Preu, imatge etc...</li>
-		<li class="product_line"><h3>casa 4</h3> Preu, imatge etc...</li>
-		<li class="product_line"><h3>casa 5</h3> Preu, imatge etc...</li>
+		</c:forEach>
+		</c:if>
+		
 		</ul>
 		</div>
 		</div>
