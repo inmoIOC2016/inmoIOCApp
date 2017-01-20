@@ -3,7 +3,7 @@
 	<span class="spanTitle">InmoIOC Web</span>
 </div>
 <ul>
-  <li><a href="<c:url value='/web' />">Inici</a></li>
+  <li><a href="<c:url value='/compra' />">Inici</a></li>
   <li><a href="#">Noticies</a></li>
   <li><a href="#">Contacte</a></li>
   <li>
