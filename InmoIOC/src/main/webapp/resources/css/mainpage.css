@@ -68,6 +68,25 @@ td,th{
     padding: 11px 0px;
     border: 4px solid #C4C4C4;
     width:1100px;
+    display: block;
+}
+
+.product_line_left{
+	float: left;
+	padding-left: 12px;
+}
+
+.product_line_right{
+	float: right;
+	padding-right: 12px;
+}
+
+.product_line_image{
+	
+}
+
+.product_line_description{
+	
 }
 
 #columna_esquerra{
@@ -92,7 +111,8 @@ line-height: 30px;
 #barra_buscador{
 background: #D9D9D9;
 width: 200px;
-height: 99%;
+height: 90%;
+border-bottom: 30px;
 }
 
 #menu_superior ul {
@@ -123,5 +143,12 @@ height: 99%;
 
 #footer {
 	background-color: #D9D9D9; 
-	padding: 3px 3px 3px 3px;"
+	padding: 3px 3px 3px 3px;
+	align: center;
+}
+
+#product_count {
+	background-color: #D9D9D9;
+	padding: 11px 11px 11px 11px;
+	margin-left: 40px;
 }
