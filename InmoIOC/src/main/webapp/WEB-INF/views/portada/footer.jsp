@@ -1,2 +1,1 @@
-<hr>
-<div id="footer" >© InmoIOC 2016. Tots els drets reservats.</div>
+<div id="footer" >© InmoIOC 2017. Tots els drets reservats  | <a href="/">Avís legal</a></div>
