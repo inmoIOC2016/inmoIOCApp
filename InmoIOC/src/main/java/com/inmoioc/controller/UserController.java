@@ -15,7 +15,7 @@ import com.inmoioc.utils.Constants;
 
 /**
  * Controlador que carrega el model de dades e invoca a la vista utilitzada al login
- * @author: Sonia Carrillo MaÒas, Iv·n Soto Rom·n
+ * @author: Sonia Carrillo Ma√±as - Iv√°n Soto Rom√°n - Albert Conesa Garcia
  */
 
 @Controller
@@ -49,10 +49,9 @@ public class UserController {
 			model.addAttribute("loginStatus", "true");
 			model.addAttribute("userName", findUser.getUsername());
 			model.addAttribute("user", findUser);
-			model.addAttribute("rights",findUser.getRights());
+			model.addAttribute("roles",findUser.getRole());
 			
-			if(findUser.getRights().toUpperCase().equals(Constants.RIGHTS_TYPE_USER_SUPERADMIN) || 
-					findUser.getRights().toUpperCase().equals(Constants.RIGHTS_TYPE_USER_ADMIN)){
+			if(findUser.getRole().getRole().toUpperCase().equals(Constants.ROLE_TYPE_USER_ADMIN)){
 				return "gestioAdmin";
 			} else {
 				return "gestioUser";

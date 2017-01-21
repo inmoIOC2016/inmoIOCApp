@@ -8,16 +8,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.inmoioc.dao.ManagementDAO;
 import com.inmoioc.model.Category;
+import com.inmoioc.model.City;
 import com.inmoioc.model.Incidence;
+import com.inmoioc.model.IncidenceStatus;
 import com.inmoioc.model.Payment;
 import com.inmoioc.model.Property;
+import com.inmoioc.model.Role;
 import com.inmoioc.model.SellType;
 import com.inmoioc.model.Selling;
+import com.inmoioc.model.Status;
 import com.inmoioc.model.User;
 
 /**
  * Capa de servei per fer us de la persistencia a base de dades
- * @author: Sonia Carrillo Ma�as
+ * @author: Sonia Carrillo Mañas - Iván Soto Román - Albert Conesa Garcia
  */
 
 @Service("managementService")
@@ -71,8 +75,23 @@ public class ManagementService {
 	}
 
 	@Transactional
-	public Incidence getIncidence(int id) {
-		return managementDAO.getIncidence(id);
+	public Incidence getIncidenceById(int id) {
+		return managementDAO.getIncidenceById(id);
+	}
+	
+	@Transactional
+	public List<Incidence> getIncidenceByName(String name) {
+		return managementDAO.getIncidenceByName(name);
+	}
+	
+	@Transactional
+	public List<Incidence> getIncidenceByIdUser(int id) {
+		return managementDAO.getIncidenceByIdUser(id);
+	}
+	
+	@Transactional
+	public List<Incidence> getIncidence(int id, String name) {
+		return managementDAO.getIncidence(id, name);
 	}
 
 	@Transactional
@@ -98,8 +117,8 @@ public class ManagementService {
 	}
 
 	@Transactional
-	public Payment getPayment(int id) {
-		return managementDAO.getPayment(id);
+	public Payment getPaymentById(int id) {
+		return managementDAO.getPaymentById(id);
 	}
 
 	@Transactional
@@ -132,6 +151,11 @@ public class ManagementService {
 	@Transactional
 	public List<Property> getPropertyByName(String name) {
 		return managementDAO.getPropertyByName(name);
+	}
+	
+	@Transactional
+	public List<Property> getPropertyByIdUser(int id) {
+		return managementDAO.getPropertyByIdUser(id);
 	}
 	
 	@Transactional
@@ -175,6 +199,11 @@ public class ManagementService {
 	@Transactional
 	public List<Selling> getSelling(int id, int idProperty) {
 		return managementDAO.getSelling(id, idProperty);
+	}
+	
+	@Transactional
+	public List<Selling> getSellingByIdUser(int id, boolean state) {
+		return managementDAO.getSellingByIdUser(id, state);
 	}
 
 	@Transactional
@@ -237,7 +266,7 @@ public class ManagementService {
 	}
 	
 	@Transactional
-	public List<User> getUser(int id, String name) {
+	public List<User> getUser(Integer id, String name) {
 		return managementDAO.getUser(id, name);
 	}
 
@@ -260,5 +289,154 @@ public class ManagementService {
 	public void deleteUser(int id) {
 		managementDAO.deleteUser(id);
 	}
+	
+	// ROLES
+	
+	@Transactional
+	public List<Role> getAllRoles() {
+		return managementDAO.getAllRoles();
+	}
 
+	@Transactional
+	public Role getRoleById(int id) {
+		return managementDAO.getRoleById(id);
+	}
+	
+	@Transactional
+	public List<Role> getRoleByName(String name) {
+		return managementDAO.getRoleByName(name);
+	}
+	
+	@Transactional
+	public List<Role> getRole(int id, String name) {
+		return managementDAO.getRole(id, name);
+	}
+
+	@Transactional
+	public void addRole(Role role) {
+		managementDAO.addRole(role);
+	}
+
+	@Transactional
+	public void updateRole(Role role) {
+		managementDAO.updateRole(role);
+	}
+
+	@Transactional
+	public void deleteRole(int id) {
+		managementDAO.deleteRole(id);
+	}	
+
+	// CITY
+	
+	@Transactional
+	public List<City> getAllCities() {
+		return managementDAO.getAllCities();
+	}
+
+	@Transactional
+	public City getCityById(int id) {
+		return managementDAO.getCityById(id);
+	}
+	
+	@Transactional
+	public List<City> getCityByName(String name) {
+		return managementDAO.getCityByName(name);
+	}
+	
+	@Transactional
+	public List<City> getCity(int id, String name) {
+		return managementDAO.getCity(id, name);
+	}
+
+	@Transactional
+	public void addCity(City city) {
+		managementDAO.addCity(city);
+	}
+
+	@Transactional
+	public void updateCity(City city) {
+		managementDAO.updateCity(city);
+	}
+
+	@Transactional
+	public void deleteCity(int id) {
+		managementDAO.deleteCity(id);
+	}	
+
+	// STATUS
+	
+	@Transactional
+	public List<Status> getAllStatus() {
+		return managementDAO.getAllStatus();
+	}
+
+	@Transactional
+	public Status getStatusById(int id) {
+		return managementDAO.getStatusById(id);
+	}
+	
+	@Transactional
+	public List<Status> getStatusByName(String name) {
+		return managementDAO.getStatusByName(name);
+	}
+	
+	@Transactional
+	public List<Status> getStatus(int id, String name) {
+		return managementDAO.getStatus(id, name);
+	}
+
+	@Transactional
+	public void addStatus(Status status) {
+		managementDAO.addStatus(status);
+	}
+
+	@Transactional
+	public void updateStatus(Status status) {
+		managementDAO.updateStatus(status);
+	}
+
+	@Transactional
+	public void deleteStatus(int id) {
+		managementDAO.deleteStatus(id);
+	}
+	
+	// INCIDENCE STATUS
+	
+	@Transactional
+	public List<IncidenceStatus> getAllIncidenceStatus() {
+		return managementDAO.getAllIncidenceStatus();
+	}
+
+	@Transactional
+	public IncidenceStatus getIncidenceStatusById(int id) {
+		return managementDAO.getIncidenceStatusById(id);
+	}
+	
+	@Transactional
+	public List<IncidenceStatus> getIncidenceStatusByName(String name) {
+		return managementDAO.getIncidenceStatusByName(name);
+	}
+	
+	@Transactional
+	public List<IncidenceStatus> getIncidenceStatus(int id, String name) {
+		return managementDAO.getIncidenceStatus(id, name);
+	}
+
+	@Transactional
+	public void addIncidenceStatus(IncidenceStatus incidenceStatus) {
+		managementDAO.addIncidenceStatus(incidenceStatus);
+	}
+
+	@Transactional
+	public void updateIncidenceStatus(IncidenceStatus incidenceStatus) {
+		managementDAO.updateIncidenceStatus(incidenceStatus);
+	}
+
+	@Transactional
+	public void deleteIncidenceStatus(int id) {
+		managementDAO.deleteIncidenceStatus(id);
+	}
+	
+	
 }

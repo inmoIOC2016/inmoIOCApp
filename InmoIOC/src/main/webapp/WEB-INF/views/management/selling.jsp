@@ -42,13 +42,13 @@
 					filterAll();
 				} else {
 					if(fid != '' && fname != ''){						
-						window.location.href = '/InmoIOC/findProperty/' + fid + '/' + fname;
+						window.location.href = '/InmoIOC/findSelling/' + fid + '/' + fname;
 					} else {
 						if(fid != ''){
-							window.location.href = '/InmoIOC/findPropertyById/' + fid;
+							window.location.href = '/InmoIOC/findSellingById/' + fid;
 						} 						
 						if(fname != ''){
-							window.location.href = '/InmoIOC/findPropertyByName/' + fname;
+							window.location.href = '/InmoIOC/findSellingByName/' + fname;
 						}						
 					}
 				}
@@ -69,42 +69,45 @@
 				</tr>				
 		        <tr>
 		        	<form:hidden path="id_selling" />
-					<td><form:label path="id_user">Usuari:</form:label></td>
+					<td><form:label path="user">Usuari Propietari:</form:label></td>
 		          	<td>
-			          	<form:select name="id_user" path="id_user">
+			          	<form:select name="user" path="user.id_user">
+			          	  <option value=""> - Seleccionar opció -</option>
 						  <c:forEach items="${userList}" var="ulist">
 						    <option value="${ulist.id_user}"
-						    	<c:if test="${ulist.id_user eq selling.id_user}"> selected="selected" </c:if>>
-						        ${ulist.username}
+						    	<c:if test="${ulist.id_user eq selling.user.id_user}"> selected="selected" </c:if>>
+						        Nom: ${ulist.name} - Username: ${ulist.username} - Rol: ${ulist.role.description}
 						    </option>
 						  </c:forEach>
 						</form:select>
 					</td>
 				</tr>
 				<tr>
-					<td><form:label path="id_property">Inmoble:</form:label></td>
-		          	<td>
-			          	<form:select name="id_property" path="id_property">
-						  <c:forEach items="${propertyList}" var="plist">
-						    <option value="${plist.id_property}"
-						    	<c:if test="${plist.id_property eq selling.id_property}"> selected="selected" </c:if>>
+					<td><form:label path="property">Inmoble:</form:label></td>
+		          	<td>		          		
+		          		<form:select name="property" path="property.id_property">
+		          		  <option value=""> - Seleccionar opció -</option>
+						  <c:forEach items="${propertyListPublic}" var="plist">
+						    <option value="${plist.id_property}"						    
+						     	<c:if test="${plist.id_property eq selling.property.id_property}"> selected="selected" </c:if>>
 						        ${plist.name}
 						    </option>
 						  </c:forEach>
-						</form:select>
-					</td>
-				</tr>
+						</form:select>		          		
+		          	</td>
+				</tr>	
 				<tr>
 					<td><form:label path="expected_price">Preu:</form:label></td>
 		          	<td><form:input path="expected_price" size="30" maxlength="200"></form:input></td>
-				</tr>				
+				</tr>
 				<tr>
-					<td><form:label path="sell_type">Tipus venda:</form:label></td>
+					<td><form:label path="sellType">Tipus venda:</form:label></td>
 		          	<td>		          		
-		          		<form:select name="selltype" path="sell_type">
+		          		<form:select name="sellType" path="sellType.id_type">
+		          		  <option value=""> - Seleccionar opció -</option>
 						  <c:forEach items="${sellTypeList}" var="slist">
 						    <option value="${slist.id_type}"						    
-						     	<c:if test="${slist.id_type eq selling.sell_type}"> selected="selected" </c:if>>
+						     	<c:if test="${slist.id_type eq selling.sellType.id_type}"> selected="selected" </c:if>>
 						        ${slist.name}
 						    </option>
 						  </c:forEach>
@@ -113,11 +116,39 @@
 				</tr>
 				<tr>
 					<td><form:label path="date_start">Data inici:</form:label></td>
-		          	<td><form:input path="date_start" size="30" maxlength="200"></form:input></td>
+		          	<td><form:input type="date" path="date_start" size="30" maxlength="200"></form:input></td>
 				</tr>
 				<tr>
 					<td><form:label path="date_end">Data fi:</form:label></td>
-		          	<td><form:input path="date_end" size="30" maxlength="200"></form:input></td>
+		          	<td><form:input type="date" path="date_end" size="30" maxlength="200"></form:input></td>
+				</tr>
+				<tr>
+					<td><form:label path="status">Estat venda:</form:label></td>
+		          	<td>		          		
+		          		<form:select name="status" path="status.id_status">
+		          		  <option value=""> - Seleccionar opció -</option>
+						  <c:forEach items="${statusList}" var="st">
+						    <option value="${st.id_status}"						    
+						     	<c:if test="${st.id_status eq selling.status.id_status}"> selected="selected" </c:if>>
+						        ${st.status}
+						    </option>
+						  </c:forEach>
+						</form:select>		          		
+		          	</td>
+				</tr>
+				<tr>
+					<td><form:label path="userPayment">Usuari Estat Venda:</form:label></td>
+		          	<td>
+			          	<form:select name="userPayment" path="userPayment.id_user">
+			          	  <option value=""> - Seleccionar opció -</option>
+						  <c:forEach items="${userList}" var="ulist">
+						    <option value="${ulist.id_user}"
+						    	<c:if test="${ulist.id_user eq selling.userPayment.id_user}"> selected="selected" </c:if>>
+						        Nom: ${ulist.name} - Username: ${ulist.username} - Rol: ${ulist.role.description}
+						    </option>
+						  </c:forEach>
+						</form:select>
+					</td>
 				</tr>				
 				<tr>
 					<td colspan="2">
@@ -135,7 +166,7 @@
 			</tr>
 			<tr>	
 				 <td>Id:</td>
-		         <td><input type="text" name="fid" id="fid"/></td>				
+		         <td><input type="number" name="fid" id="fid"/></td>				
 		         <td>Inmoble:</td>
 		         <td><input type="text" name="fname" id="fname"/></td>
 		    </tr>				
@@ -154,32 +185,44 @@
 			<table class="tg">
 			<tr>
 				<th width="50">Id</th>
-				<th width="100">Usuari</th>
+				<th width="100">Usuari Propietari</th>
 				<th width="100">Inmoble</th>
 				<th width="50">Preu</th>
 				<th width="50">Tipus Venda</th>
 				<th width="100">Data Inici</th>
-				<th width="100">Data Fi</th>		
+				<th width="100">Data Fi</th>
+				<th width="100">Estat Venda</th>
+				<th width="100">Usuari Estat Venda</th>
 				<th width="100">Accions</th>
 			</tr>
 			<c:forEach items="${sellingList}" var="selling">
 				<tr>
 					<td>${selling.id_selling}</td>
-					<td>${selling.id_user}</td>
-					<td>${selling.id_property}</td>
+					<td>Nom: ${selling.user.name} - Username: ${selling.user.username} - Rol: ${selling.user.role.description}</td>
+					<td>${selling.property.name}</td>
 					<td>${selling.expected_price}</td>
-					<td>${selling.sell_type}</td>
+					<td>${selling.sellType.name}</td>
 					<td>${selling.date_start}</td>
 					<td>${selling.date_end}</td>
+					<td>${selling.status.status}</td>
 					<td>
-						<a class="button buttonBlack buttonTableCell" href="<c:url value='/updateSelling/${selling.id_selling}' />" >Modificar</a>
-						<a class="button buttonBlack buttonTableCell" onclick="return confirmDelete();" href="<c:url value='/deleteSelling/${selling.id_selling}' />" >Eliminar</a>
+						<c:if test="${!empty selling.userPayment}">
+						  Nom: ${selling.userPayment.name} - Username: ${selling.userPayment.username} - Rol: ${selling.userPayment.role.description}
+						</c:if>
+					</td>
+					<td>
+						<c:if test="${selling.status.id_status != 6 && selling.status.id_status != 7 && selling.status.id_status != 8}">
+							<a class="button buttonBlack buttonTableCell" href="<c:url value='/updateSelling/${selling.id_selling}' />" >Modificar</a>
+							<a class="button buttonBlack buttonTableCell" onclick="return confirmDelete();" href="<c:url value='/deleteSelling/${selling.id_selling}' />" >Eliminar</a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 			</table>
 		</c:if>
-		
+		<c:if test="${empty sellingList}">
+			<table class="tg"><tr><th>Sense Resultats</th></tr></table>
+		</c:if>	
 		<%@include file="../footerapp.jsp" %>
 	</body>
 </html>

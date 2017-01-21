@@ -1,6 +1,6 @@
 <div>
-	<img src="<c:url value="/resources/img/logo.jpg" />" height="184" width="212">	
-	<span class="spanTitle">InmoIOC App</span>
+	<img src="<c:url value="/resources/img/logoalternativo.png" />">	
+	<span class="spanTitle"></span>
 </div>
 <ul>
   <li><a href="<c:url value='/web' />">Inici</a></li>

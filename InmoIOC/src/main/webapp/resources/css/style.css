@@ -4,7 +4,7 @@ table {
 }
 
 th {
-  	color: lightseagreen;
+  	color: red;
 }
 
 .messageKO {
@@ -120,7 +120,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: lightseagreen;
+    background-color: red;
 }
 
 li {
@@ -167,10 +167,25 @@ span {
    	color: #FFFFFF;    	
 }
 
+.info1 {
+	position: absolute; 
+	left: 30px; 
+	right: 30px; 
+	top: 60px;
+	font-family: verdana, arial, sans-serif; 
+   	font-size: 10pt; 
+   	font-weight: bold;    	
+   	color: #FFFFFF;    	
+}
+
 .product_line:before, .product_line:after {
     content: ".";
     display: block;
     height: 0;
     overflow: hidden;
+}
+
+.newstitle {
+	font-size: 15pt; 
 }
 

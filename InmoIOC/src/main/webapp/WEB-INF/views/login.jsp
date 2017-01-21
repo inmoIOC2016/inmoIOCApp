@@ -23,7 +23,7 @@
 		        </tr>
 				<tr>
 					<td><form:label path="password">Password:</form:label></td>
-		          	<td><form:input path="password" size="30" maxlength="30"></form:input></td>
+		          	<td><form:input type="password" path="password" size="30" maxlength="30"></form:input></td>
 				</tr>
 				<tr>						
 					<td><a href="<c:url value='/registration' />" class="button buttonBlack" >Registre d'usuari</a></td>

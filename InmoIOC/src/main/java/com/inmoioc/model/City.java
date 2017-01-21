@@ -13,35 +13,35 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name="db_selltype")
-public class SellType{
+@Table(name="db_cities")
+public class City{
 	
 	@Id
-	@Column(name="id_type")
+	@Column(name="id_city")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	int id_type;
+	int id_city;
 	
-	@Column(name="name")
-	String name;
+	@Column(name="city")
+	String city;
 	
-	public SellType() {
+	public City() {
 		super();
 	}
-	public SellType(int id_type, String name) {
+	public City(int id_city, String city) {
 		super();
-		this.id_type = id_type;
-		this.name = name;		
+		this.id_city = id_city;
+		this.city = city;		
 	}
-	public int getId_type() {
-		return id_type;
+	public int getId_city() {
+		return id_city;
 	}
-	public void setId_type(int id_type) {
-		this.id_type = id_type;
+	public void setId_city(int id_city) {
+		this.id_city = id_city;
 	}
-	public String getName() {
-		return name;
+	public String getCity() {
+		return city;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}	
+	public void setCity(String city) {
+		this.city = city;
+	}
 }

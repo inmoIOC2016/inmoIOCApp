@@ -25,8 +25,12 @@
 		        </tr>
 				<tr>
 					<td><form:label path="password">Password:</form:label></td>
-		          	<td><form:input path="password" size="30" maxlength="200"></form:input></td>
+		          	<td><form:input type="password" path="password" size="30" maxlength="200"></form:input></td>
 				</tr>
+				<tr>
+					<td><form:label path="name">Nom Usuari:</form:label></td>
+		          	<td><form:input path="name" size="30" maxlength="200"></form:input></td>
+				</tr>	
 				<tr>
 					<td><form:label path="email">Email:</form:label></td>
 		          	<td><form:input path="email" size="30" maxlength="200"></form:input></td>

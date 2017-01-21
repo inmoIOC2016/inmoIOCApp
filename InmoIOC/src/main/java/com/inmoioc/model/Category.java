@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 /**
  * Objecte de domini de persistencia
- * @author: Sonia Carrillo Ma�as
+ * @author: Sonia Carrillo Mañas - Iván Soto Román - Albert Conesa Garcia
  */
 
 @Entity

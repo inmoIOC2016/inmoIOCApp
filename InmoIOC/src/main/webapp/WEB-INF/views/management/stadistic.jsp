@@ -22,8 +22,16 @@
 		</script>
 	</head>
 	<body onload="loadUserData();">
-		<%@include file="../menuAdminStadistic.jsp" %>			
-		
+		<%@include file="../menuAdminStadistic.jsp" %>
+		<br>
+		<h3>Estadístiques</h3>	
+		<br>
+		<c:if test="${!empty total}"><strong>Total d'inmobles a la venda:</strong> ${total}</c:if><br>
+		<c:if test="${!empty totalReal}"><strong>Total d'inmobles venuts, llogats o traspassats:</strong> ${totalReal}</c:if><br>		
+		<c:if test="${!empty percent}"><strong>Percentatge de venda: </strong>${percent} %</c:if>
+		<br><br>	
+		<c:if test="${!empty totalPayment}"><strong>Total facturat: </strong>${totalPayment} &euro;</c:if>
+		<br>				
 		<%@include file="../footerapp.jsp" %>
 	</body>
 </html>

@@ -2,6 +2,11 @@ package com.inmoioc.dao;
 
 import java.util.List;
 
+/**
+ * Access a la base de dades 
+ * @author: Sonia Carrillo Mañas - Iván Soto Román - Albert Conesa Garcia
+ */
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +32,12 @@ public class UserDAO {
 			return list.get(0);
 		}
 		return null;
+	}
+	
+	public List<User> getAllUsers() {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<User> list = session.createQuery("from User").list();
+		return list;
 	}
 
 }

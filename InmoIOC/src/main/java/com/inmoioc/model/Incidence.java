@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * Objecte de domini de persistencia
- * @author: Sonia Carrillo Ma�as
+ * @author: Sonia Carrillo Mañas - Iván Soto Román - Albert Conesa Garcia
  */
 
 @Entity
@@ -21,24 +23,26 @@ public class Incidence{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id_incidence;
 	
-	@Column(name="id_user")
-	int id_user;
-	
-	@Column(name="title")
-	String title;
+	@ManyToOne
+	@JoinColumn(name ="id_user")
+	private User user;
 	
 	@Column(name="description")
 	String description;
 	
+	@ManyToOne
+	@JoinColumn(name ="id_status")
+	private IncidenceStatus status;
+	
 	public Incidence() {
 		super();
 	}
-	public Incidence(int id_incidence, int id_user, String title, String description) {
+	public Incidence(int id_incidence, User user, String description, IncidenceStatus status) {
 		super();
 		this.id_incidence = id_incidence;
-		this.id_user = id_user;
-		this.title = title;
-		this.description = description;		
+		this.user = user;
+		this.description = description;
+		this.status = status;
 	}
 	public int getId_incidence() {
 		return id_incidence;
@@ -46,22 +50,22 @@ public class Incidence{
 	public void setId_incidence(int id_incidence) {
 		this.id_incidence = id_incidence;
 	}
-	public int getId_user() {
-		return id_user;
+	public User getUser() {
+		return user;
 	}
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public IncidenceStatus getStatus() {
+		return status;
+	}
+	public void setStatus(IncidenceStatus status) {
+		this.status = status;
 	}
 }

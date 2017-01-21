@@ -32,7 +32,7 @@
 			}
 			
 			function filterAll(){
-				window.location.href = '/InmoIOC/usuaris';
+				window.location.href = '/InmoIOC/incidencies';
 			}
 			
 			function filter(){
@@ -42,13 +42,13 @@
 					filterAll();
 				} else {
 					if(fid != '' && fname != ''){						
-						window.location.href = '/InmoIOC/findUser/' + fid + '/' + fname;
+						window.location.href = '/InmoIOC/findIncidence/' + fid + '/' + fname;
 					} else {
 						if(fid != ''){
-							window.location.href = '/InmoIOC/findUserById/' + fid;
+							window.location.href = '/InmoIOC/findIncidenceById/' + fid;
 						} 						
 						if(fname != ''){
-							window.location.href = '/InmoIOC/findUserByName/' + fname;
+							window.location.href = '/InmoIOC/findIncidenceByName/' + fname;
 						}						
 					}
 				}
@@ -56,52 +56,50 @@
 		</script>
 	</head>	
 	<body onload="loadUserData();">
-		<%@include file="../menuAdminUser.jsp" %>
-		
+		<%@include file="../menuAdminIncidence.jsp" %>
+				
 		<c:if test="${!empty message}">
 			<div class="messageKO">${message}</div>
 		</c:if>
 		<br>		
-		<form:form method="post" modelAttribute="user" action="/InmoIOC/addUser">
+		<form:form method="post" modelAttribute="incidence" action="/InmoIOC/addIncidence">
 			<table id="noborder">
 				<tr>
-					<th colspan="2">Gestió d'Usuaris</th>
+					<th colspan="2">Gestió d'Incidències</th>
+				</tr>				
+		        <tr>
+		        	<form:hidden path="id_incidence" />
+					<td><form:label path="user">Usuari:</form:label></td>
+		          	<td>
+			          	<form:select name="user" path="user.id_user">
+			          	  <option value=""> - Seleccionar opció -</option>
+						  <c:forEach items="${userList}" var="ulist">
+						    <option value="${ulist.id_user}"
+						    	<c:if test="${ulist.id_user eq incidence.user.id_user}"> selected="selected" </c:if>>
+						        Nom: ${ulist.name} - Username: ${ulist.username} - Rol: ${ulist.role.description}
+						    </option>
+						  </c:forEach>
+						</form:select>
+					</td>
 				</tr>
 				<tr>
-					<form:hidden path="id_user" />
-		          	<td><form:label path="username">Usuari:</form:label></td>
-		          	<td><form:input path="username" size="30" maxlength="200"></form:input></td>
-		        </tr>
-				<tr>
-					<td><form:label path="password">Password:</form:label></td>
-		          	<td><form:input path="password" size="30" maxlength="200"></form:input></td>
+					<td><form:label path="description">Descripció:</form:label></td>
+		          	<td><form:input path="description" size="100" maxlength="100"></form:input></td>
 				</tr>
 				<tr>
-					<td><form:label path="name">Nom Usuari:</form:label></td>
-		          	<td><form:input path="name" size="30" maxlength="200"></form:input></td>
-				</tr>
-				<tr>
-					<td><form:label path="email">Email:</form:label></td>
-		          	<td><form:input path="email" size="30" maxlength="200"></form:input></td>
-				</tr>
-				<tr>
-					<td><form:label path="role">Rol:</form:label></td>
+					<td><form:label path="status">Estat incidència:</form:label></td>
 		          	<td>		          		
-		          		<form:select name="role" path="role.id_role">
+		          		<form:select name="status" path="status.id_status">
 		          		  <option value=""> - Seleccionar opció -</option>
-						  <c:forEach items="${roleList}" var="r">						  
-						    <option value="${r.id_role}"						    
-						     	<c:if test="${r.id_role eq user.role.id_role}"> selected="selected" </c:if>>
-						        ${r.description}
+						  <c:forEach items="${incidenceStatusList}" var="st">
+						    <option value="${st.id_status}"						    
+						     	<c:if test="${st.id_status eq incidence.status.id_status}"> selected="selected" </c:if>>
+						        ${st.status}
 						    </option>
 						  </c:forEach>
 						</form:select>		          		
 		          	</td>
-				</tr>
-				<tr>
-					<td><form:label path="registration_date">Data Registre:</form:label></td>
-		          	<td><form:input type="date" path="registration_date" size="30" maxlength="200"></form:input></td>
-				</tr>				
+				</tr>		
 				<tr>
 					<td colspan="2">
 						<input type="submit" value="Desar" class="button buttonBlack" />
@@ -109,9 +107,9 @@
 					</td>
 				</tr>
 			</table> 
-		</form:form>		
+		</form:form>
 		<hr>
-		<h3>Llistat Usuaris</h3>
+		<h3>Llistat Incidències</h3>
 		<table id="noborder">
 			<tr>
 				<th colspan="4">Cercador</th>
@@ -119,7 +117,7 @@
 			<tr>	
 				 <td>Id:</td>
 		         <td><input type="number" name="fid" id="fid"/></td>				
-		         <td>Usuari:</td>
+		         <td>Descripció:</td>
 		         <td><input type="text" name="fname" id="fname"/></td>
 		    </tr>				
 			<tr>
@@ -133,36 +131,32 @@
 			<div class="messageInfo">${filter}</div>
 		</c:if>
 		<br>
-		<c:if test="${!empty userList}">
+		<c:if test="${!empty incidenceList}">
 			<table class="tg">
 			<tr>
 				<th width="50">Id</th>
 				<th width="100">Usuari</th>
-				<th width="100">Password</th>
-				<th width="100">Nom Usuari</th>
-				<th width="50">Email</th>
-				<th width="50">Rol</th>
-				<th width="100">Data Registre</th>					
+				<th width="100">Descripció</th>
+				<th width="100">Estat Incidència</th>
 				<th width="100">Accions</th>
 			</tr>
-			<c:forEach items="${userList}" var="user">
+			<c:forEach items="${incidenceList}" var="incidence">
 				<tr>
-					<td>${user.id_user}</td>
-					<td>${user.username}</td>
-					<td>${user.password}</td>
-					<td>${user.name}</td>
-					<td>${user.email}</td>
-					<td>${user.role.description}</td>
-					<td>${user.registration_date}</td>
+					<td>${incidence.id_incidence}</td>
+					<td>Nom: ${incidence.user.name} - Username: ${incidence.user.username} - Rol: ${incidence.user.role.description}</td>
+					<td>${incidence.description}</td>
+					<td>${incidence.status.status}</td>
 					<td>
-						<a class="button buttonBlack buttonTableCell" href="<c:url value='/updateUser/${user.id_user}' />" >Modificar</a>
-						<a class="button buttonBlack buttonTableCell" onclick="return confirmDelete();" href="<c:url value='/deleteUser/${user.id_user}' />" >Eliminar</a>
+						<c:if test="${incidence.status.id_status != 3 && incidence.status.id_status != 4}">
+							<a class="button buttonBlack buttonTableCell" href="<c:url value='/updateIncidence/${incidence.id_incidence}' />" >Modificar</a>
+							<a class="button buttonBlack buttonTableCell" onclick="return confirmDelete();" href="<c:url value='/deleteIncidence/${incidence.id_incidence}' />" >Eliminar</a>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 			</table>
 		</c:if>
-		<c:if test="${empty userList}">
+		<c:if test="${empty incidenceList}">
 			<table class="tg"><tr><th>Sense Resultats</th></tr></table>
 		</c:if>	
 		<%@include file="../footerapp.jsp" %>

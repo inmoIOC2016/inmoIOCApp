@@ -88,7 +88,7 @@
 			</tr>
 			<tr>	
 				 <td>Id:</td>
-		         <td><input type="text" name="fid" id="fid"/></td>				
+		         <td><input type="number" name="fid" id="fid"/></td>				
 		         <td>Nom:</td>
 		         <td><input type="text" name="fname" id="fname"/></td>
 		    </tr>				
@@ -122,6 +122,9 @@
 				</c:forEach>
 			</table>
 		</c:if>
+		<c:if test="${empty categoryList}">
+			<table class="tg"><tr><th>Sense Resultats</th></tr></table>
+		</c:if>	
 		<%@include file="../footerapp.jsp" %>
 	</body>
 </html>

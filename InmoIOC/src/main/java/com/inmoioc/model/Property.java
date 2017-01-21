@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * Objecte de domini de persistencia
- * @author: Sonia Carrillo Ma�as
+ * @author: Sonia Carrillo Mañas - Iván Soto Román - Albert Conesa Garcia
  */
 
 @Entity
@@ -25,13 +27,15 @@ public class Property{
 	String name;
 	
 	@Column(name="address")
-	String address;	
+	String address;
 	
-	@Column(name="id_category")
-	int id_category;	
+	@ManyToOne
+	@JoinColumn(name ="id_category")
+	private Category category;
 	
-	@Column(name="sell_type")
-	int sell_type;	
+	@ManyToOne
+	@JoinColumn(name ="sell_type")
+	private SellType sellType;
 	
 	@Column(name="base_price")
 	float base_price;
@@ -40,25 +44,40 @@ public class Property{
 	String contact;	
 	
 	@Column(name="available")
-	int available;
+	Integer available;
 	
-	@Column(name="username")
-	String username;
+	@ManyToOne
+	@JoinColumn(name ="id_user")
+	private User user;
+	
+	@ManyToOne
+	@JoinColumn(name ="id_city")
+	private City city;
+	
+	@Column(name="reg_selling")
+	Integer reg_selling;
+	
+	@Column(name="image")
+	private byte[] image;
+
 	
 	public Property() {
 		super();
 	}
-	public Property(int id_property, String name, String address, int id_category, int sell_type, float base_price, String contact, int available, String username) {
+	public Property(int id_property, String name, String address, Category category, SellType sellType, float base_price, String contact, Integer available, User user, City city, Integer reg_selling, byte[] image) {
 		super();
 		this.id_property = id_property;
 		this.name = name;
 		this.address=address;
-		this.id_category = id_category;
-		this.sell_type = sell_type;
+		this.category = category;
+		this.sellType = sellType;
 		this.base_price = base_price;
 		this.contact = contact;
 		this.available = available;
-		this.username = username;
+		this.user = user;
+		this.city = city;
+		this.reg_selling = reg_selling;
+		this.image = image;
 	}
 	public int getId_property() {
 		return id_property;
@@ -78,18 +97,6 @@ public class Property{
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getId_category() {
-		return id_category;
-	}
-	public void setId_category(int id_category) {
-		this.id_category = id_category;
-	}
-	public int getSell_type() {
-		return sell_type;
-	}
-	public void setSell_type(int sell_type) {
-		this.sell_type = sell_type;
-	}
 	public float getBase_price() {
 		return base_price;
 	}
@@ -102,16 +109,46 @@ public class Property{
 	public void setContact(String contact) {
 		this.contact = contact;
 	}
-	public int getAvailable() {
+	public Integer getAvailable() {
 		return available;
 	}
-	public void setAvailable(int available) {
+	public void setAvailable(Integer available) {
 		this.available = available;
 	}
-	public String getUsername() {
-		return username;
+	public Category getCategory() {
+		return category;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public SellType getSellType() {
+		return sellType;
+	}
+	public void setSellType(SellType sellType) {
+		this.sellType = sellType;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public City getCity() {
+		return city;
+	}
+	public void setCity(City city) {
+		this.city = city;
+	}
+	public Integer getReg_selling() {
+		return reg_selling;
+	}
+	public void setReg_selling(Integer reg_selling) {
+		this.reg_selling = reg_selling;
+	}	
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
 	}	
 }

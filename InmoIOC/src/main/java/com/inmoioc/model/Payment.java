@@ -7,11 +7,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
  * Objecte de domini de persistencia
- * @author: Sonia Carrillo Ma�as
+ * @author: Sonia Carrillo Mañas - Iván Soto Román - Albert Conesa Garcia
  */
 
 @Entity
@@ -23,17 +25,12 @@ public class Payment{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	int id_payment;
 	
-	@Column(name="id_selling")
-	int id_selling;
-	
-	@Column(name="id_user")
-	int id_user;	
+	@ManyToOne
+	@JoinColumn(name ="id_selling")
+	private Selling selling;
 	
 	@Column(name="amount")
 	float amount;	
-	
-	@Column(name="documentation")
-	String documentation;	
 	
 	@Column(name="date_payment")
 	Date date_payment;
@@ -41,13 +38,11 @@ public class Payment{
 	public Payment() {
 		super();
 	}
-	public Payment(int id_payment, int id_selling, int id_user, float amount, String documentation, Date date_payment) {
+	public Payment(int id_payment, Selling selling, float amount, Date date_payment) {
 		super();
 		this.id_payment = id_payment;
-		this.id_selling = id_selling;
-		this.id_user=id_user;
+		this.selling = selling;
 		this.amount = amount;
-		this.documentation = documentation;
 		this.date_payment = date_payment;	
 	}
 	public int getId_payment() {
@@ -56,34 +51,22 @@ public class Payment{
 	public void setId_payment(int id_payment) {
 		this.id_payment = id_payment;
 	}
-	public int getId_selling() {
-		return id_selling;
-	}
-	public void setId_selling(int id_selling) {
-		this.id_selling = id_selling;
-	}
-	public int getId_user() {
-		return id_user;
-	}
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
-	}
 	public float getAmount() {
 		return amount;
 	}
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-	public String getDocumentation() {
-		return documentation;
-	}
-	public void setDocumentation(String documentation) {
-		this.documentation = documentation;
-	}
 	public Date getDate_payment() {
 		return date_payment;
 	}
 	public void setDate_payment(Date date_payment) {
 		this.date_payment = date_payment;
+	}
+	public Selling getSelling() {
+		return selling;
+	}
+	public void setSelling(Selling selling) {
+		this.selling = selling;
 	}
 }

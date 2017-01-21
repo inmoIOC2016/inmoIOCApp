@@ -4,13 +4,15 @@ package com.inmoioc.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
  * Controlador que carrega el model de dades e invoca a les vistes utilitzades a la web
- * @author: Sonia Carrillo Ma�as
+ * @author: Sonia Carrillo Mañas - Iván Soto Román - Albert Conesa Garcia
  */
 
 @Controller
+@SessionAttributes({"userName","loginStatus","rights"}) //variables de sessio
 public class WebController {
 	
 	@RequestMapping(value = "/web", method = RequestMethod.GET, headers = "Accept=application/json")

@@ -1,11 +1,10 @@
 <div>
-	<img src="<c:url value="/resources/img/logo.jpg" />" height="184" width="212">	
-	<span class="spanTitle">InmoIOC App</span>
+	<img src="<c:url value="/resources/img/logoalternativo.png" />">	
+	<span class="spanTitle"></span>
 </div>
 <ul>  
-  <li><a class="liSelected" href="#">Immobles</a></li>
+  <li><a class="liSelected" href="#">Alta d'Immobles</a></li>
   <li><a href="<c:url value='/vendes' />">Vendes/Compres/Lloguers/Traspassos</a></li>
-  <li><a href="<c:url value='/operacions' />">Operacions i Contactes amb Usuaris</a></li>
   <li><a href="<c:url value='/pagaments' />">Pagaments</a></li>
   <li><a href="<c:url value='/incidencies' />">Incidències</a></li>
   <li><a href="<c:url value='/estadistica' />">Estadístiques</a></li>
