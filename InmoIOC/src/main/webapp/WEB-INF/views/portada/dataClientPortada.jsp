@@ -20,7 +20,7 @@ if (objSession.getAttribute("rights") != null)
 else
 {
 	%><span>No estàs connectat</span><br>
-	<a href="<c:url value='/login' />" >Connecta</a>&nbsp;&nbsp;<a href="<c:url value='/registration' />" >Registra</a>
+	<a href="<c:url value='/login' />" >Login</a> | <a href="<c:url value='/registration' />" >Registra't</a>
 	<%
 }
 %>

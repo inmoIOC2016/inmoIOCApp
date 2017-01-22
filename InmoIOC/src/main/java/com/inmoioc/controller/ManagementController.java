@@ -1016,6 +1016,22 @@ public class ManagementController {
 		model.addAttribute("filter", "");
 		
 	    return "userintranet/purchase";
-	}	
+	}
+	
+	// COMPRA
+	
+	@RequestMapping(value = "/compra", method = RequestMethod.GET, headers = "Accept=application/json")
+	public String compra(Model model) {		
+		return "portada/compra";
+	}
+		
+	// LLOGUER
+		
+	@RequestMapping(value = "/lloguer", method = RequestMethod.GET, headers = "Accept=application/json")
+	public String venta(Model model) {		
+		return "portada/lloguer";
+	}
+	
+	
 		
 }
