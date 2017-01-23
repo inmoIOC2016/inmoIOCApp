@@ -1,19 +1,32 @@
 package com.inmoioc.controller;
 
 
+import java.awt.Image;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.imageio.ImageIO;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 
 import com.inmoioc.model.Category;
 import com.inmoioc.model.City;
@@ -43,6 +56,24 @@ public class ManagementController {
 	
 	@Autowired
 	UserService userService;
+	
+	@InitBinder
+	public void dataBinding(WebDataBinder binder) {
+		binder.registerCustomEditor(byte[].class,new ByteArrayMultipartFileEditor());
+	}
+	
+	@RequestMapping(value = "/imageController/{imageId}")
+	@ResponseBody
+	public byte[] imageconverter(@PathVariable long id) throws IOException  {
+	 Property entity = managementService.getPropertyById((int)id);
+	 
+	 /* byte[] encoded=Base64.getEncoder().encode(entity.getImage());
+	  String encodedString = new String(encoded);
+	  return new String(encoded);*/
+	  Image image = ImageIO.read(new ByteArrayInputStream(entity.getImage()));
+	  System.err.println("IMAGELOAD" + id);
+	  return entity.getImage();
+	}
 	
 	// PROPERTY
 	
@@ -196,10 +227,19 @@ public class ManagementController {
 	}	
 	
 	@SuppressWarnings("deprecation")
-	@RequestMapping(value = "/addProperty", method = RequestMethod.POST, headers = "Accept=application/json")
-	public String addProperty(@ModelAttribute("property") Property property) {	
+	@RequestMapping(value = "/addProperty", method = RequestMethod.POST)
+	public String addProperty(@ModelAttribute("property") Property property, BindingResult result) throws IOException {	
+	    if(result.hasErrors()) {
+	    	System.err.println("FAIL");
+	    }
+	    else
+	    {
+	    	System.err.println("SUCCESS");
+	    }
 		if(property.getId_property()==0)
 		{
+			System.err.println(property.getImage().length);
+			System.err.println(property.getImage());
 			managementService.addProperty(property);
 		}
 		else

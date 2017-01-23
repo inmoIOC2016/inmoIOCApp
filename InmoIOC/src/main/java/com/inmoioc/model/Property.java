@@ -1,5 +1,7 @@
 package com.inmoioc.model;
 
+import java.util.Base64;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -59,7 +61,7 @@ public class Property{
 	
 	@Column(name="image")
 	private byte[] image;
-
+	
 	
 	public Property() {
 		super();
@@ -151,4 +153,13 @@ public class Property{
 	public void setImage(byte[] image) {
 		this.image = image;
 	}	
+	public String getbase64() {
+		if (this.image != null)
+		{
+		  byte[] encoded=Base64.getEncoder().encode(this.image);
+		  return new String(encoded);
+		}
+		else return "";
+	}
+	
 }

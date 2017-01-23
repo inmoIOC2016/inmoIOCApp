@@ -20,11 +20,6 @@ public class WebController {
 		return "web";
 	}
 	
-	@RequestMapping(value = "/compra", method = RequestMethod.GET, headers = "Accept=application/json")
-	public String compra() {
-		return "compra";
-	}
-	
 	@RequestMapping(value = "/weblegal", method = RequestMethod.GET, headers = "Accept=application/json")
 	public String weblegal() {
 		return "weblegal";

@@ -63,7 +63,7 @@
 			<div class="messageKO">${message}</div>
 		</c:if>
 		<br>		
-		<form:form method="post" modelAttribute="property" action="/InmoIOC/addProperty">
+		<form:form method="post" modelAttribute="property" enctype="multipart/form-data" action="/InmoIOC/addProperty">
 			<table id="noborder">
 				<tr>
 					<th colspan="2">Alta i Gestió d'Inmobles</th>
@@ -220,6 +220,7 @@
 			<tr>
 				<th width="50">Id</th>
 				<th width="100">Nom</th>
+				<th width="100">Image</th>
 				<th width="100">Adreça</th>
 				<th width="100">Ciutat</th>
 				<th width="50">Categoria</th>
@@ -234,6 +235,9 @@
 				<tr>
 					<td>${property.id_property}</td>
 					<td><c:out value="${property.name}"/></td>
+					<td>
+					<img src="data:image/jpg;base64,<c:out value='${property.getbase64()}'/>" />				
+					</td>
 					<td><c:out value="${property.address}"/></td>
 					<td><c:out value="${property.city.city}"/></td>
 					<td>${property.category.name}</td>

@@ -45,7 +45,7 @@
 				<div id="content">
 		<div id="columna_esquerra">
 		<h4 id="header_buscador">
-                <img src="img/lupa.png" width="28" height="28" style="position:absolute;">
+                <img src="<c:url value="/resources/img/lupa.png" />" width="28" height="28" style="position:absolute;">
                 <span style="padding-left: 33px;">Buscar per...</span>
         </h4>
         <div id="barra_buscador">
