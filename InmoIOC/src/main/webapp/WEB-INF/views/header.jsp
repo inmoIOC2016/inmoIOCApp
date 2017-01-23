@@ -3,8 +3,6 @@
 	<span class="spanTitle"></span>
 </div>
 <ul>
-  <li><a href="<c:url value='/web' />">Inici</a></li>
-  <li><a href="#">Noticies</a></li>
-  <li><a href="#">Contacte</a></li> 
+  <li><a href="<c:url value='/compra' />">Pàgina Principal</a></li>
 </ul>
 <div class="clear"></div>

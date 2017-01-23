@@ -438,5 +438,10 @@ public class ManagementService {
 		managementDAO.deleteIncidenceStatus(id);
 	}
 	
+	@Transactional
+	public List<Property> getPropertyWebsite(int state) {
+		return managementDAO.getPropertyWebsite(state);
+	}
+	
 	
 }

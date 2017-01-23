@@ -42,57 +42,8 @@
 		
 	<div id="page">
 		<%@include file="header.jsp" %>
-				<div id="content">
-		<div id="columna_esquerra">
-		<h4 id="header_buscador">
-                <img src="<c:url value="/resources/img/lupa.png" />" width="28" height="28" style="position:absolute;">
-                <span style="padding-left: 33px;">Buscar per...</span>
-        </h4>
-        <div id="barra_buscador">
-        <div style="padding: 8px 8px 8px 8px;">
-        <span><b>Preu</b></span><br>
-        <input type="checkbox" />menys de 40.000€<br>
-        <input type="checkbox" />...<br>
-        <input type="checkbox" />...<br>
-         <span><b>Ciutat</b></span><br>
-        </div>
-        </div>
-		</div>
-		<div id="columna_centre">
-		<h3>Compra</h3>
-		<div id="product_count">Hi han ${propertyList.size()} inmobles</div>
-		<ul style="list-style-type: none;">
-		<c:forEach items="${propertyList}" var="property">
-		<li class="product_line">
-		<div style="position: relative;">
-			<div class="product_line_left">
-				<div style="float:left;"><a href="" class="product_img_link">
-				<img src="data:image/jpg;base64,<c:out value='${property.getbase64()}'/>" width="170" height="128" src="" alt=""/>	
-				</a></div>
-				<div class="product_line_description">
-    	<h3><c:out value="${property.name}"/></h3>		
-    	<p class="product_line_desc">
-    	<strong><c:out value="${property.city.city}"/></strong></p></div>
-        <div class="clear"></div>
-			</div>
-			<div class="product_line_right">
-				<div>
-					<span class="preu">${property.base_price}€</span>
-				</div>
-				<a class="button-mes product_button" href="/productpage/<c:out value="${property.id_property}"/>")>Veure detalls</a>		
-			</div>
-            
-                    <div class="clear"></div>
-
-			</div>
-		</li>
-		</c:forEach>
-		</ul>
-		</div>
-        
-        <div class="clear"></div>
-        
-        
+		<div id="content">
+		<img src="<c:url value="/resources/img/web.jpg" />" width="100%" height="400px">
 		</div>
 		<%@include file="footer.jsp" %>
 <div class="clear"></div>

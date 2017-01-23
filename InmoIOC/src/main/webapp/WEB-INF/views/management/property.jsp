@@ -236,7 +236,7 @@
 					<td>${property.id_property}</td>
 					<td><c:out value="${property.name}"/></td>
 					<td>
-					<img src="data:image/jpg;base64,<c:out value='${property.getbase64()}'/>" />				
+					<img src="data:image/jpg;base64,<c:out value='${property.getbase64()}'/>" width="140px" height="120px" />				
 					</td>
 					<td><c:out value="${property.address}"/></td>
 					<td><c:out value="${property.city.city}"/></td>

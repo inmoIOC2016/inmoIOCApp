@@ -213,6 +213,13 @@ public class ManagementDAO {
 		List<Property> list = session.createQuery("from Property").list();
 		return list;
 	}
+	
+	public List<Property> getPropertyWebsite(int state) {
+		Session session = this.sessionFactory.getCurrentSession();
+		//List<Property> list = session.createQuery("from Property").list();
+		List<Property> list = session.createQuery("from Property P WHERE P.available = 1 AND P.id_property IN (SELECT S.property FROM Selling S WHERE S.status = " + state + ")").list();
+		return list;
+	}
 
 	public Property getPropertyById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();

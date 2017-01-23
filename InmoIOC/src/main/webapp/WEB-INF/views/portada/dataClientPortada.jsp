@@ -1,19 +1,26 @@
 <div id="login_window">
 <%
 HttpSession objSession = request.getSession(true); 
-if (objSession.getAttribute("rights") != null)
+if (objSession.getAttribute("rights") != null && objSession.getAttribute("rights") != "")
 {
 	  //si estas conectat mostra un link
 	 %>
-	 	<span>Connectat com: <%= objSession.getAttribute( "userName" ) %> </span><br>
+	 	<span>Connectat com: ${userName} (${rights})</span><br>
 	    <a href="<c:url value='/logout' />" >Desconecta</a>
 	 <%
 	 // si es admin mostra link al panell d'administració
-	 if (((String)(objSession.getAttribute("rights"))).contains("admin"))
+	 if (((String)(objSession.getAttribute("rights"))).contains("Admin"))
 	 {
 		 %>
-		 <p><a href="<c:url value='/adminprincipal'/>">Panell d'administració</a></p>
+		 <br><a href="<c:url value='/inmobles'/>">Panell d'administració</a>
 		 <%
+	 }
+	 else
+	 {
+		 %>
+		 <br><a href="<c:url value='/findSellingByUsernameP'/>">Panell de control</a>
+		 <%
+		 
 	 }
 	  
 }

@@ -17,7 +17,7 @@ public class WebController {
 	
 	@RequestMapping(value = "/web", method = RequestMethod.GET, headers = "Accept=application/json")
 	public String web() {
-		return "web";
+		return "portada/principal";
 	}
 	
 	@RequestMapping(value = "/weblegal", method = RequestMethod.GET, headers = "Accept=application/json")
@@ -34,5 +34,7 @@ public class WebController {
 	public String webcontact() {
 		return "webcontact";
 	}
+	
+	
 	
 }

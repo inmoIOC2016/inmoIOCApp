@@ -62,18 +62,6 @@ public class ManagementController {
 		binder.registerCustomEditor(byte[].class,new ByteArrayMultipartFileEditor());
 	}
 	
-	@RequestMapping(value = "/imageController/{imageId}")
-	@ResponseBody
-	public byte[] imageconverter(@PathVariable long id) throws IOException  {
-	 Property entity = managementService.getPropertyById((int)id);
-	 
-	 /* byte[] encoded=Base64.getEncoder().encode(entity.getImage());
-	  String encodedString = new String(encoded);
-	  return new String(encoded);*/
-	  Image image = ImageIO.read(new ByteArrayInputStream(entity.getImage()));
-	  System.err.println("IMAGELOAD" + id);
-	  return entity.getImage();
-	}
 	
 	// PROPERTY
 	
@@ -280,7 +268,7 @@ public class ManagementController {
 	}
 
 	@RequestMapping(value = "/updateProperty/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
-	public String updateProperty(@PathVariable("id") int id, Model model) {
+	public String updateProperty(@PathVariable("id") int id,  Model model) {
 		 model.addAttribute("property", this.managementService.getPropertyById(id));
 	     model.addAttribute("propertyList", this.managementService.getAllProperty());
 	     model.addAttribute("propertyListPublic", propertyPublicAndNotSelling(this.managementService.getAllProperty()));
@@ -1061,17 +1049,46 @@ public class ManagementController {
 	// COMPRA
 	
 	@RequestMapping(value = "/compra", method = RequestMethod.GET, headers = "Accept=application/json")
-	public String compra(Model model) {		
+	public String compra(Model model) {	
+		List<Property> list = managementService.getPropertyWebsite(1);	
+		model.addAttribute("property", new Property());
+		model.addAttribute("propertyList", list);
 		return "portada/compra";
 	}
-		
+	
 	// LLOGUER
 		
 	@RequestMapping(value = "/lloguer", method = RequestMethod.GET, headers = "Accept=application/json")
-	public String venta(Model model) {		
+	public String lloguer(Model model) {	
+		List<Property> list = managementService.getPropertyWebsite(2);	
+		model.addAttribute("property", new Property());
+		model.addAttribute("propertyList", list);
 		return "portada/lloguer";
 	}
 	
+	// TRASPÀS
 	
+	@RequestMapping(value = "/traspas", method = RequestMethod.GET, headers = "Accept=application/json")
+	public String traspàs(Model model) {	
+		List<Property> list = managementService.getPropertyWebsite(3);	
+		model.addAttribute("property", new Property());
+		model.addAttribute("propertyList", list);
+		return "portada/traspàs";
+	}
+	
+	// PRINCIPAL
+	
+	@RequestMapping(value = "/principal", method = RequestMethod.GET, headers = "Accept=application/json")
+	public String principal(Model model) {	
+		return "portada/principal";
+	}
+	
+	// PRODUCT PAGE
+	
+	@RequestMapping(value = "/productpage/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
+	public String findSellingByUsernameP(@PathVariable("id") int id, Model model) {
+		Property entity = managementService.getPropertyById(id);
+		return "portada/productpage";
+	}
 		
 }

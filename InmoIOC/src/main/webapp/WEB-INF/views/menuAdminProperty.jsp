@@ -3,6 +3,7 @@
 	<span class="spanTitle"></span>
 </div>
 <ul>  
+  <li><a href="<c:url value='/principal' />">Pàgina Principal</a></li>
   <li><a class="liSelected" href="#">Alta d'Immobles</a></li>
   <li><a href="<c:url value='/vendes' />">Vendes/Compres/Lloguers/Traspassos</a></li>
   <li><a href="<c:url value='/pagaments' />">Pagaments</a></li>

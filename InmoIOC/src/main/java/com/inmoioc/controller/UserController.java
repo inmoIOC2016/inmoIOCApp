@@ -38,7 +38,9 @@ public class UserController {
 		model.addAttribute("message", "");
 		model.addAttribute("loginStatus", "false");
 		model.addAttribute("user", new User());
-		return "login";		
+		model.addAttribute("userName", "");
+		model.addAttribute("rights","");
+		return "portada/principal";		
 	}
 	
 	@RequestMapping(value = "/getUser", method = RequestMethod.POST, headers = "Accept=application/json")
@@ -50,11 +52,13 @@ public class UserController {
 			model.addAttribute("userName", findUser.getUsername());
 			model.addAttribute("user", findUser);
 			model.addAttribute("roles",findUser.getRole());
-			
+
 			if(findUser.getRole().getRole().toUpperCase().equals(Constants.ROLE_TYPE_USER_ADMIN)){
+				model.addAttribute("rights","Administrador");
 				return "gestioAdmin";
 			} else {
-				return "gestioUser";
+				model.addAttribute("rights","Usuari");
+				return "compra";
 			}
 		} else {
 			model.addAttribute("message", "Usuari o password incorrecte");
