@@ -35,6 +35,23 @@
 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
+<script>
+function confirmReserve(idSelling) {			    
+	var confirmar = confirm("Segur que vols reservar aquest inmoble?");
+	if (confirmar == true) {			    	
+		reserve(idSelling);
+	} else {
+		return false;
+	}			    
+}
+
+function reserve(idSelling){
+	var userName = sessionStorage.getItem("userName");
+	window.location.href = '/InmoIOC/updateSellingReserve/' + idSelling + '/' + userName;				
+}
+
+</script>
+
 </head>
     
 	<body  style="background: #222 url(<c:url value="/resources/img/fondoalternativo.jpg" />) top center no-repeat fixed; ">
@@ -51,10 +68,25 @@
 		<img src="data:image/jpg;base64,<c:out value='${property.getbase64()}'/>" width="370" height="288" src="" alt=""/>	
 		<br><span><strong>Preu: ${property.base_price}€</strong></span>
 		<br>
+<%
+if (objSession.getAttribute("rights") != null && objSession.getAttribute("rights") != "")
+{
+	 %>
+	 <div style="margin-top:10px">
+					<a class="button-mes"
+							onclick="return confirmReserve(${selling.id_selling});"
+							href="#">Reservar</a>
+	</div>
+	 <% 
+}
+
+%>
 		<div style="background-color:#D1D1D1;margin-bottom:8px">
+		
 		<h3>Dades de contacte</h3>
 		${property.contact}
 		</div>
+
 
 		</div>
 		<%@include file="footer.jsp" %>

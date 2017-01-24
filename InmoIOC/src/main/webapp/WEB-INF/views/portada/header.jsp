@@ -8,6 +8,5 @@
 	<li><a href="<c:url value='/compra' />" >Compra</a></li>
 	<li><a href="<c:url value='/lloguer' />" >Lloguer</a></li>
 	<li><a href="<c:url value='/traspas' />" >Traspàs</a></li>
-	<li><a href="<c:url value='/contacte' />" >Contacte</a></li>
 	</ul>
 </div>

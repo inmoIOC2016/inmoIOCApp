@@ -58,6 +58,19 @@
 	<body onload="loadUserData();">
 		<%@include file="../menuAdminUser.jsp" %>
 		
+		<%
+		HttpSession objSession = request.getSession(true); 
+		if ( objSession.getAttribute("rights") != "SuperAdministrador")
+		{
+			%>
+				<p style="color:red">PRIVILEGIS INSUFICIENTS!</p>
+			<%
+		}
+		else
+		{
+		
+		%>
+
 		<c:if test="${!empty message}">
 			<div class="messageKO">${message}</div>
 		</c:if>
@@ -138,7 +151,6 @@
 			<tr>
 				<th width="50">Id</th>
 				<th width="100">Usuari</th>
-				<th width="100">Password</th>
 				<th width="100">Nom Usuari</th>
 				<th width="50">Email</th>
 				<th width="50">Rol</th>
@@ -166,5 +178,9 @@
 			<table class="tg"><tr><th>Sense Resultats</th></tr></table>
 		</c:if>	
 		<%@include file="../footerapp.jsp" %>
+		<%
+		}
+		 %>
+		
 	</body>
 </html>

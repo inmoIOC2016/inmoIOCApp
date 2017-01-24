@@ -40,12 +40,13 @@ public class Incidence{
 	public Incidence() {
 		super();
 	}
-	public Incidence(int id_incidence, User user, String description, IncidenceStatus status) {
+	public Incidence(int id_incidence, User user, String description, IncidenceStatus status, byte[] file) {
 		super();
 		this.id_incidence = id_incidence;
 		this.user = user;
 		this.description = description;
 		this.status = status;
+		this.file = file;
 	}
 	public int getId_incidence() {
 		return id_incidence;

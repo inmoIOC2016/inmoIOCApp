@@ -30,7 +30,7 @@
 			<div class="messageKO">${message}</div>
 		</c:if>
 		<br>
-		<form:form method="post" modelAttribute="incidence" action="/InmoIOC/addIncidenceUser">
+		<form:form method="post" modelAttribute="incidence" enctype="multipart/form-data" action="/InmoIOC/addIncidenceUser">
 			<table id="noborder">
 				<tr>
 					<th colspan="2">Gestió d'Incidències</th>
@@ -59,7 +59,7 @@
 				</tr>	
 		        <tr>
 					<td><form:label path="file">Documentació:</form:label></td>					
-		          	<td><img src="${property.file}" />	<form:input type="file" path="file"></form:input></td>
+		          	<td><form:input type="file" path="file"></form:input></td>
 				</tr>		
 				<tr>
 					<td colspan="2">

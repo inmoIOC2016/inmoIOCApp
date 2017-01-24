@@ -7,15 +7,11 @@
 		<script>
 			function loadUserData() {
 				sessionStorage["userName"] = "<c:out value='${userName}' />";
+				window.location.href = 'http://localhost:8080/InmoIOC/principal';
 			}				
 		</script>
 	</head>
 	<body onload="loadUserData();">		
-		<%@include file="menuUser.jsp" %>
-		<br><br><br>
-		<img src="<c:url value="/resources/img/welcome.jpg" />">
-		<br><br><br>
-		<span>Benvingut!! Selecciona una opció del menú per començar a treballar.</span>
-		<%@include file="footerapp.jsp" %>		
+
 	</body>
 </html>

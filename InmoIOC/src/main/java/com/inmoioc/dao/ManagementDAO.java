@@ -299,6 +299,12 @@ public class ManagementDAO {
 		Selling obj = (Selling) session.get(Selling.class, new Integer(id));
 		return obj;
 	}	
+	
+	public Selling getSellingByProperty(int id) {
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Selling> list = session.createQuery("from Selling WHERE property = " + id).list();
+		return list.get(0);
+	}	
 		
 	public List<Selling> getSellingByName(String name) {
 		Session session = this.sessionFactory.getCurrentSession();

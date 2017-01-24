@@ -192,6 +192,11 @@ public class ManagementService {
 	}
 	
 	@Transactional
+	public Selling getSellingByProperty(int id) {
+		return managementDAO.getSellingByProperty(id);
+	}
+	
+	@Transactional
 	public List<Selling> getSellingByName(String name) {
 		return managementDAO.getSellingByName(name);
 	}

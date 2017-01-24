@@ -67,11 +67,11 @@ for (var i = 0, length = filter_city.length; i < length; i++) {
         break;
     }
 }
-if (price == 1){maxprice = 200;}
-else if (price == 2){minprice = 200; maxprice = 300;}
-else if (price == 3){minprice = 300; maxprice = 400;}
-else if (price == 4){minprice = 400; maxprice = 500;}
-else if (price == 5){minprice = 500;}
+if (price == 1){maxprice = 40000;}
+else if (price == 2){minprice = 40000; maxprice = 80000;}
+else if (price == 3){minprice = 80000; maxprice = 120000;}
+else if (price == 4){minprice = 120000; maxprice = 160000;}
+else if (price == 5){minprice = 160000;}
 for (var i = 0, length = product_line.length; i < length; i++) {
     if (product_line[i].dataset.price < minprice || product_line[i].dataset.price > maxprice || (city != "" && product_line[i].dataset.city != city) || (category != "" && product_line[i].dataset.category != category)) {
     	product_line[i].style.display = "none";
@@ -105,11 +105,11 @@ product_count.innerHTML = "Hi han " + counter + " inmobles.";
         <div id="barra_buscador">
         <div style="padding: 8px 8px 8px 8px;">
         <span><b>Preu</b></span><br>
-        <input type="radio"  name="filter_price" value="1" onclick="filter()"/>menys de 200€<br>
-        <input type="radio"  name="filter_price" value="2" onclick="filter()"/>200€ - 300€<br>
-        <input type="radio"  name="filter_price" value="3" onclick="filter()"/>300€ - 400€<br>
-        <input type="radio"  name="filter_price" value="4" onclick="filter()"/>400€ - 500€<br>
-        <input type="radio"  name="filter_price" value="5" onclick="filter()"/>més de 500€<br>
+        <input type="radio"  name="filter_price" value="1" onclick="filter()"/>menys de 40.000€<br>
+        <input type="radio"  name="filter_price" value="2" onclick="filter()"/>40.000€ - 80.000€<br>
+        <input type="radio"  name="filter_price" value="3" onclick="filter()"/>80.000€ - 120.000€<br>
+        <input type="radio"  name="filter_price" value="4" onclick="filter()"/>120.000€ - 160.000€<br>
+        <input type="radio"  name="filter_price" value="5" onclick="filter()"/>més de 160.000€<br>
         <br>
          <span><b>Tipus</b></span><br>
          <c:forEach items="${categoryList}" var="category">
@@ -123,7 +123,7 @@ product_count.innerHTML = "Hi han " + counter + " inmobles.";
         </div>
 		</div>
 		<div id="columna_centre">
-		<h3>Lloguer</h3>
+		<h3>Traspas</h3>
 		<div id="product_count">Hi han ${propertyList.size()} inmobles</div>
 		<ul style="list-style-type: none;">
 		<c:forEach items="${propertyList}" var="property">

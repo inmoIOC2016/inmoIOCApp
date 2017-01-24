@@ -56,7 +56,12 @@ public class UserController {
 			if(findUser.getRole().getRole().toUpperCase().equals(Constants.ROLE_TYPE_USER_ADMIN)){
 				model.addAttribute("rights","Administrador");
 				return "gestioAdmin";
-			} else {
+			} 
+			else if(findUser.getRole().getRole().toUpperCase().equals(Constants.ROLE_TYPE_USER_SUPERADMIN)){
+				model.addAttribute("rights","SuperAdministrador");
+				return "gestioAdmin";
+			} 
+			else {
 				model.addAttribute("rights","Usuari");
 				return "gestioUser";
 			}

@@ -1034,7 +1034,7 @@ public class ManagementController {
 		
 		model.addAttribute("filter", "");
 		
-	    return "userintranet/purchase";
+	    return "portada/principal";
 	}
 	
 	// COMPRA
@@ -1061,6 +1061,13 @@ public class ManagementController {
 		List<Property> list = managementService.getPropertyWebsite(2);	
 		model.addAttribute("property", new Property());
 		model.addAttribute("propertyList", list);
+		
+		List<Category> list1 = managementService.getAllCategory();		
+		model.addAttribute("categoryList", list1);
+		
+		List<City> list4 = managementService.getAllCities();		
+		model.addAttribute("citiesList", list4);
+		
 		return "portada/lloguer";
 	}
 	
@@ -1071,6 +1078,13 @@ public class ManagementController {
 		List<Property> list = managementService.getPropertyWebsite(3);	
 		model.addAttribute("property", new Property());
 		model.addAttribute("propertyList", list);
+		
+		List<Category> list1 = managementService.getAllCategory();		
+		model.addAttribute("categoryList", list1);
+		
+		List<City> list4 = managementService.getAllCities();		
+		model.addAttribute("citiesList", list4);
+		
 		return "portada/traspas";
 	}
 	
@@ -1087,6 +1101,8 @@ public class ManagementController {
 	public String findSellingByUsernameP(@PathVariable("id") int id, Model model) {
 		Property entity = managementService.getPropertyById(id);
 		model.addAttribute("property", entity);
+		Selling selling = managementService.getSellingByProperty(id);
+		model.addAttribute("selling", selling);
 		return "portada/productpage";
 	}
 		
