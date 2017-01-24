@@ -420,7 +420,9 @@ public class ManagementController {
 
 	@RequestMapping(value = "/updateUser/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public String updateUser(@PathVariable("id") int id, Model model) {
-		model.addAttribute("user", this.managementService.getUserById(id));
+		User user = this.managementService.getUserById(id);
+		user.setPassword("");
+		model.addAttribute("user", user);
 	    model.addAttribute("userList", this.managementService.getAllUser());
 	    List<Role> list1 = managementService.getAllRoles();
 		model.addAttribute("roleList", list1);
@@ -925,11 +927,12 @@ public class ManagementController {
 	}
 	
 	@RequestMapping(value = "/addPropertyUser", method = RequestMethod.POST, headers = "Accept=application/json")
-	public String addPropertyUser(@ModelAttribute("property") Property property) {	
+	public String addPropertyUser(@ModelAttribute("property") Property property, BindingResult result) {	
 		if(property.getId_property()==0)
 		{
 			managementService.addProperty(property);
 		}
+		
 		User user = managementService.getUserById(property.getUser().getId_user());		
 		return "redirect:/findPropertyByUsername/" + user.getUsername();
 	}

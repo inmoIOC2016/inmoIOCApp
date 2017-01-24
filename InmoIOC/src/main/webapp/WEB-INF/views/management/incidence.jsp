@@ -137,6 +137,7 @@
 				<th width="50">Id</th>
 				<th width="100">Usuari</th>
 				<th width="100">Descripció</th>
+				<th width="100">Documentació</th>
 				<th width="100">Estat Incidència</th>
 				<th width="100">Accions</th>
 			</tr>
@@ -145,6 +146,7 @@
 					<td>${incidence.id_incidence}</td>
 					<td>Nom: ${incidence.user.name} - Username: ${incidence.user.username} - Rol: ${incidence.user.role.description}</td>
 					<td>${incidence.description}</td>
+					<td>${incidence.file}</td>
 					<td>${incidence.status.status}</td>
 					<td>
 						<c:if test="${incidence.status.id_status != 3 && incidence.status.id_status != 4}">

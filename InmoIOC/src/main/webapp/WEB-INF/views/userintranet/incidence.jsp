@@ -84,7 +84,7 @@
 				<tr>
 					<td>${incidence.id_incidence}</td>					
 					<td>${incidence.description}</td>
-					<td>${incidence.file}</td>
+				<td>${incidence.file}</td>
 					<td>${incidence.status.status}</td>
 				</tr>
 			</c:forEach>
