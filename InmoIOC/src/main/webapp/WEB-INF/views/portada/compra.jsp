@@ -35,6 +35,60 @@
 <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
+<script>
+
+function filter(){
+var filter_price = document.getElementsByName('filter_price');
+var filter_category = document.getElementsByName('filter_category');
+var filter_city = document.getElementsByName('filter_city');
+var product_count = document.getElementById('product_count');
+var price = -1;
+var category = "";
+var city = "";
+var minprice = -1;
+var maxprice = 9999999;
+var counter = 0;
+var product_line = document.getElementsByClassName('product_line');
+for (var i = 0, length = filter_price.length; i < length; i++) {
+    if (filter_price[i].checked) {
+        price = filter_price[i].value;
+        break;
+    }
+}
+for (var i = 0, length = filter_category.length; i < length; i++) {
+    if (filter_category[i].checked) {
+    	category = filter_category[i].value;
+        break;
+    }
+}
+for (var i = 0, length = filter_city.length; i < length; i++) {
+    if (filter_city[i].checked) {
+    	city = filter_city[i].value;
+        break;
+    }
+}
+if (price == 1){maxprice = 40000;}
+else if (price == 2){minprice = 40000; maxprice = 80000;}
+else if (price == 3){minprice = 80000; maxprice = 120000;}
+else if (price == 4){minprice = 120000; maxprice = 160000;}
+else if (price == 5){minprice = 160000;}
+for (var i = 0, length = product_line.length; i < length; i++) {
+    if (product_line[i].dataset.price < minprice || product_line[i].dataset.price > maxprice || (city != "" && product_line[i].dataset.city != city) || (category != "" && product_line[i].dataset.category != category)) {
+    	product_line[i].style.display = "none";
+    }
+    else 
+    {
+    	product_line[i].style.display = "block";
+    	counter++;
+    }
+}
+product_count.innerHTML = "Hi han " + counter + " inmobles.";
+	
+}
+
+</script>
+
+
 </head>
     
 	<body  style="background: #222 url(<c:url value="/resources/img/fondoalternativo.jpg" />) top center no-repeat fixed; ">
@@ -51,10 +105,20 @@
         <div id="barra_buscador">
         <div style="padding: 8px 8px 8px 8px;">
         <span><b>Preu</b></span><br>
-        <input type="checkbox" />menys de 40.000€<br>
-        <input type="checkbox" />...<br>
-        <input type="checkbox" />...<br>
+        <input type="radio"  name="filter_price" value="1" onclick="filter()"/>menys de 40.000€<br>
+        <input type="radio"  name="filter_price" value="2" onclick="filter()"/>40.000€ - 80.000€<br>
+        <input type="radio"  name="filter_price" value="3" onclick="filter()"/>80.000€ - 120.000€<br>
+        <input type="radio"  name="filter_price" value="4" onclick="filter()"/>120.000€ - 160.000€<br>
+        <input type="radio"  name="filter_price" value="5" onclick="filter()"/>més de 160.000€<br>
+        <br>
+         <span><b>Tipus</b></span><br>
+         <c:forEach items="${categoryList}" var="category">
+         <input type="radio"  name="filter_category" value="${category.name}" onclick="filter()"/>${category.name}<br>
+         </c:forEach>
          <span><b>Ciutat</b></span><br>
+         <c:forEach items="${citiesList}" var="city">
+         <input type="radio"  name="filter_city" value="${city.city}" onclick="filter()"/>${city.city}<br>
+         </c:forEach>
         </div>
         </div>
 		</div>
@@ -63,10 +127,10 @@
 		<div id="product_count">Hi han ${propertyList.size()} inmobles</div>
 		<ul style="list-style-type: none;">
 		<c:forEach items="${propertyList}" var="property">
-		<li class="product_line">
+		<li class="product_line" data-city="${property.city.city}" data-price="${property.base_price}" data-category="${property.category.name}">
 		<div style="position: relative;">
 			<div class="product_line_left">
-				<div style="float:left;"><a href="" class="product_img_link">
+				<div style="float:left;"><a href="/InmoIOC/productpage/<c:out value="${property.id_property}"/>") class="product_img_link">
 				<img src="data:image/jpg;base64,<c:out value='${property.getbase64()}'/>" width="170" height="128" src="" alt=""/>	
 				</a></div>
 				<div class="product_line_description">
@@ -79,7 +143,7 @@
 				<div>
 					<span class="preu">${property.base_price}€</span>
 				</div>
-				<a class="button-mes product_button" href="/productpage/<c:out value="${property.id_property}"/>")>Veure detalls</a>		
+				<a class="button-mes product_button" href="/InmoIOC/productpage/<c:out value="${property.id_property}"/>")>Veure detalls</a>		
 			</div>
             
                     <div class="clear"></div>

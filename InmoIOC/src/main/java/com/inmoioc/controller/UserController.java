@@ -58,7 +58,7 @@ public class UserController {
 				return "gestioAdmin";
 			} else {
 				model.addAttribute("rights","Usuari");
-				return "compra";
+				return "gestioUser";
 			}
 		} else {
 			model.addAttribute("message", "Usuari o password incorrecte");

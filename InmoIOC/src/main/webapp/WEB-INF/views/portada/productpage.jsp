@@ -42,11 +42,23 @@
 		
 	<div id="page">
 		<%@include file="header.jsp" %>
-		<div id="content">
-		<img src="<c:url value="/resources/img/web.jpg" />" width="100%" height="400px">
+		<div id="content" align="center">
+		<div style="background-color:#D1D1D1">
+		<h3> <c:out value="${property.name}"/></h3>		
+		<p class="product_line_desc">
+    	<strong><c:out value="${property.city.city}"/>, <c:out value="${property.address}"/></strong></p>
+    	</div>
+		<img src="data:image/jpg;base64,<c:out value='${property.getbase64()}'/>" width="370" height="288" src="" alt=""/>	
+		<br><span><strong>Preu: ${property.base_price}€</strong></span>
+		<br>
+		<div style="background-color:#D1D1D1;margin-bottom:8px">
+		<h3>Dades de contacte</h3>
+		${property.contact}
+		</div>
+
 		</div>
 		<%@include file="footer.jsp" %>
-<div class="clear"></div>
+		<div class="clear"></div>
 	</div>
 	</body>
 </html>

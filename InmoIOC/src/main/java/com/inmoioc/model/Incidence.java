@@ -34,6 +34,9 @@ public class Incidence{
 	@JoinColumn(name ="id_status")
 	private IncidenceStatus status;
 	
+	@Column(name="file")
+	private byte[] file;
+	
 	public Incidence() {
 		super();
 	}
@@ -67,5 +70,11 @@ public class Incidence{
 	}
 	public void setStatus(IncidenceStatus status) {
 		this.status = status;
+	}
+	public  byte[] getFile() {
+		return file;
+	}
+	public void setFile(byte[] bytes) {
+		this.file = file;
 	}
 }

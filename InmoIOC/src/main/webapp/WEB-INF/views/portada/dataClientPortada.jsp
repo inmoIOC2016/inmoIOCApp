@@ -18,7 +18,7 @@ if (objSession.getAttribute("rights") != null && objSession.getAttribute("rights
 	 else
 	 {
 		 %>
-		 <br><a href="<c:url value='/findSellingByUsernameP'/>">Panell de control</a>
+		 <br><a href="<c:url value='/findIncidenceByUsername/'/>${userName}">Panell de control</a>
 		 <%
 		 
 	 }

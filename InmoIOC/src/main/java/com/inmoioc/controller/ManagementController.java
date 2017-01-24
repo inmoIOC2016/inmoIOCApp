@@ -217,17 +217,8 @@ public class ManagementController {
 	@SuppressWarnings("deprecation")
 	@RequestMapping(value = "/addProperty", method = RequestMethod.POST)
 	public String addProperty(@ModelAttribute("property") Property property, BindingResult result) throws IOException {	
-	    if(result.hasErrors()) {
-	    	System.err.println("FAIL");
-	    }
-	    else
-	    {
-	    	System.err.println("SUCCESS");
-	    }
 		if(property.getId_property()==0)
 		{
-			System.err.println(property.getImage().length);
-			System.err.println(property.getImage());
 			managementService.addProperty(property);
 		}
 		else
@@ -834,7 +825,7 @@ public class ManagementController {
 	}	
 	
 	@RequestMapping(value = "/addIncidence", method = RequestMethod.POST, headers = "Accept=application/json")
-	public String addIncidence(@ModelAttribute("incidence") Incidence incidence) {	
+	public String addIncidence(@ModelAttribute("incidence") Incidence incidence, BindingResult result) {	
 		if(incidence.getId_incidence()==0)
 		{
 			managementService.addIncidence(incidence);
@@ -1053,6 +1044,13 @@ public class ManagementController {
 		List<Property> list = managementService.getPropertyWebsite(1);	
 		model.addAttribute("property", new Property());
 		model.addAttribute("propertyList", list);
+		
+		List<Category> list1 = managementService.getAllCategory();		
+		model.addAttribute("categoryList", list1);
+		
+		List<City> list4 = managementService.getAllCities();		
+		model.addAttribute("citiesList", list4);
+		
 		return "portada/compra";
 	}
 	
@@ -1073,7 +1071,7 @@ public class ManagementController {
 		List<Property> list = managementService.getPropertyWebsite(3);	
 		model.addAttribute("property", new Property());
 		model.addAttribute("propertyList", list);
-		return "portada/traspàs";
+		return "portada/traspas";
 	}
 	
 	// PRINCIPAL
@@ -1088,6 +1086,7 @@ public class ManagementController {
 	@RequestMapping(value = "/productpage/{id}", method = RequestMethod.GET, headers = "Accept=application/json")
 	public String findSellingByUsernameP(@PathVariable("id") int id, Model model) {
 		Property entity = managementService.getPropertyById(id);
+		model.addAttribute("property", entity);
 		return "portada/productpage";
 	}
 		

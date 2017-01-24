@@ -46,7 +46,7 @@
 		<img src="<c:url value="/resources/img/web.jpg" />" width="100%" height="400px">
 		</div>
 		<%@include file="footer.jsp" %>
-<div class="clear"></div>
+		<div class="clear"></div>
 	</div>
 	</body>
 </html>

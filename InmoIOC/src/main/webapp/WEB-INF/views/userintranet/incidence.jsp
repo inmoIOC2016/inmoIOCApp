@@ -11,7 +11,7 @@
 				var userNameItem = document.getElementById('userNameItem');
 				var userName = sessionStorage.getItem("userName");
 				if(userName == null){
-					window.location.href = 'http://localhost:8080/InmoIOC/login';
+				 	window.location.href = 'http://localhost:8080/InmoIOC/login';
 				} else {
 					userNameItem.innerHTML += '<span style="color:white;">'+userName+'</span>';
 				}
@@ -57,6 +57,10 @@
 		          		<span>* Indiqui qualsevol dada identificativa si disposa d'ella</span>
 		          	</td>
 				</tr>	
+		        <tr>
+					<td><form:label path="file">Documentació:</form:label></td>					
+		          	<td><img src="${property.file}" />	<form:input type="file" path="file"></form:input></td>
+				</tr>		
 				<tr>
 					<td colspan="2">
 						<input type="submit" value="Desar" class="button buttonBlack" />
@@ -73,12 +77,14 @@
 			<tr>
 				<th width="50">Id</th>
 				<th width="100">Descripció</th>
+				<th width="100">Documentació</th>
 				<th width="100">Estat Incidència</th>
 			</tr>
 			<c:forEach items="${incidenceList}" var="incidence">
 				<tr>
 					<td>${incidence.id_incidence}</td>					
 					<td>${incidence.description}</td>
+					<td>${incidence.file}</td>
 					<td>${incidence.status.status}</td>
 				</tr>
 			</c:forEach>
